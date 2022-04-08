@@ -4,24 +4,32 @@ import { ALL_ACTIONS } from './definitions/actions';
 import { prompt, alert, clear } from './tools';
 
 export async function explore(character) {
-  const mapLocation = getAllLocations(character)[character[LOCATION]];
-  const availableActions = Object.keys(mapLocation).filter((key) => ALL_ACTIONS.includes(key));
-
   // Record that we were here
   character[LOCATION + HISTORY].push(character[LOCATION]);
+  // Count the number of times we've been here before (excluding this time)
+  const numTimesInThisLocation = character[LOCATION + HISTORY].reduce(
+    (reduced, current) => reduced + (current === character[LOCATION] ? 1 : 0),
+    -1,
+  );
+
+  const { [character[LOCATION]]: currentLocation } = getAllLocations(
+    character,
+    numTimesInThisLocation,
+  );
+  const availableActions = Object.keys(currentLocation).filter((key) => ALL_ACTIONS.includes(key));
 
   clear();
   alert(
     '◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️',
   );
-  alert(mapLocation[DESCRIPTION]);
+  alert(currentLocation[DESCRIPTION]);
   alert('');
   alert('Your options are: ' + availableActions.join(', '));
   const action = await prompt('What do you want to do?', availableActions);
 
   character = {
     ...character,
-    ...mapLocation[action],
+    ...currentLocation[action],
   };
 
   return character;

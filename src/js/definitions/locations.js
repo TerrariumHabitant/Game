@@ -30,7 +30,7 @@ export const MINE = "mine";
 export const SECONDTUNNEL1 = "secondtunnel1";
 export const CAVERN = "cavern";
 
-export function getAllLocations(character) {
+export function getAllLocations(character, numTimesInThisLocation) {
 
   return {
     [CAVE]: {
@@ -45,7 +45,12 @@ export function getAllLocations(character) {
         }
     },
     [TUNNEL1]: {
-        [DESCRIPTION]: commonPlaceDescriptions.tunnel1,
+        [DESCRIPTION]: (() => {
+          if (numTimesInThisLocation === 0) {
+            return commonPlaceDescriptions.tunnel1;
+          }
+          return commonPlaceDescriptions.tunnel1 + ` and you've been here ${numTimesInThisLocation} times before!`;
+        })(),
         [ACTIONS.RUN] : {
           [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
           [MODE]: MODES.EXPLORING
