@@ -14,8 +14,14 @@ export function saveCharacter(c) {
   character = c;
 }
 
-export async function save(saveName) {
+export async function save() {
   try {
+    const games = JSON.parse(await fs.readFileSync('./savedGames.json'));
+    print('Here are your existing saved games.');
+    const gameKeys = Object.keys(games);
+    gameKeys.forEach((gameKey) => print(gameKey + '\n'));
+
+    const saveName = await prompt('Please choose a name for your save');
     await fs.writeFileSync(
       './savedGames.json',
       JSON.stringify(
@@ -72,8 +78,7 @@ export async function prompt(description, availableActions) {
     }
 
     if (action === 'save' && character != null) {
-      const saveName = await prompt('Please choose a name for your save');
-      await save(saveName);
+      await save();
       print('Your game has been saved');
       repeatInput = true;
       continue;
