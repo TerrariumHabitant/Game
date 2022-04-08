@@ -1,6 +1,4 @@
-
-import {alert, prompt} from './tools';
-import colors from "colors";
+import {alert, clear, prompt} from './tools';
 
 import * as CHARACTERS from "./definitions/Character";
 import * as LOCATIONS from './definitions/locations';
@@ -9,6 +7,7 @@ import {createCharacter} from "./definitions/Character";
 import {explore} from "./explore";
 
 async function game() {
+    clear();
     const name = await prompt("What is your name?");
     alert("Hi " + name + " Welcome to The Game\n");
     const characterChoice = await prompt(

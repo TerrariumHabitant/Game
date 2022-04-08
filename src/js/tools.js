@@ -1,5 +1,4 @@
 import promptPkg from 'prompt';
-import colors from "colors";
 
 export function alert(string) {
     console.log(string);

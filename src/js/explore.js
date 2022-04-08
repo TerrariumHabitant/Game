@@ -17,12 +17,10 @@ export async function explore(character) {
     alert("Your options are: " + availableActions.join(', '));
     const action = await prompt("What do you want to do?", availableActions);
 
-    character = Object.assign(character, mapLocation[action]);
-
-    // character = {
-    //     ...character,
-    //     ...mapLocation[action]
-    // };
+    character = {
+        ...character,
+        ...mapLocation[action]
+    };
 
     return character;
 }

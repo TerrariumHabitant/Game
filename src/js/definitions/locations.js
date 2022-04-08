@@ -1,5 +1,3 @@
-import colors, { random } from "colors";
-
 import { randomSelection } from "../tools";
 import * as ACTIONS from "./actions";
 import * as MODES from "./modes";

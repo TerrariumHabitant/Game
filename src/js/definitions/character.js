@@ -1,5 +1,3 @@
-
-import colors from "colors";
 import * as MODES from "./modes";
 import * as LOCATIONS from "./locations";
 
