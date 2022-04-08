@@ -1,8 +1,33 @@
-//Types of Enemies: bats, trolls...
-//Function(loction, character) 
-//Enemies points 
-//Key points 
+import {randomInt} from "../tools";
 
-function enemyChoice(character, location, level){} //level - items aquired, time played...
+
+export const DESCRIPTION = "description";
+export const HITPOINTS = "hitpoints";
+export const WIN_TEXT = "win_text";
+export const WIN_POINTS = "win_points";
+export const LOSE_TEXT = "lose_text";
+
+export const BAT = "bat";
+export const TROLL = "troll";
+
+//Types of Enemies: bats, trolls...
+//Function(location, character)
+//Enemies points
+//Key points
+
+//level - items aquired, time played...
+
+export function getAllEnemies(character, location, level) {
+
+  return {
+    [BAT]: {
+      [DESCRIPTION]: `Oh no! It's a ${BAT}!`,
+      [HITPOINTS]: randomInt(5,15),
+      [WIN_POINTS]: randomInt(1, 5),
+      [WIN_TEXT]: `You beat that ${BAT}. Yay?\n\n ... but you gained some experience. So there's that, I guess.`,
+      [LOSE_TEXT]: `You were defeated by a ${BAT}. You should probably dwell on that for a while.`,
+    },
+  }
+}
 
 

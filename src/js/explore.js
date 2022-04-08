@@ -1,7 +1,7 @@
 import { DESCRIPTION, LOCATION, getAllLocations } from './definitions/locations';
 import { HISTORY } from './definitions/character';
 import { ALL_ACTIONS } from './definitions/actions';
-import { prompt, alert, clear } from './tools';
+import { prompt, print, clear } from './tools';
 
 export async function explore(character) {
   // Record that we were here
@@ -19,12 +19,12 @@ export async function explore(character) {
   const availableActions = Object.keys(currentLocation).filter((key) => ALL_ACTIONS.includes(key));
 
   clear();
-  alert(
+  print(
     '◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️◼️',
   );
-  alert(currentLocation[DESCRIPTION]);
-  alert('');
-  alert('Your options are: ' + availableActions.join(', '));
+  print(currentLocation[DESCRIPTION]);
+  print('');
+  print('Your options are: ' + availableActions.join(', '));
   const action = await prompt('What do you want to do?', availableActions);
 
   character = {

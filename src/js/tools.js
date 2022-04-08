@@ -1,6 +1,6 @@
 import promptPkg from 'prompt';
 
-export function alert(string) {
+export function print(string) {
   console.log(string);
 }
 
@@ -29,13 +29,21 @@ export async function prompt(description, availableActions) {
 
     if (action === 'exit') {
       clear();
-      alert('Goodbye');
+      print('Goodbye');
       process.exit();
+    }
+
+    if (action === 'save') {
+      // TODO: do something!
+    }
+
+    if (action === 'load') {
+      // TODO: do something!
     }
 
     if (action === 'help' || (availableActions && !availableActions.includes(action))) {
       needsHelp = true;
-      alert(
+      print(
         `${
           action !== 'help' ? `You can't do ${action}. ` : ''
         }Your current options are: ${availableActions.join(', ')}`,
@@ -48,4 +56,8 @@ export async function prompt(description, availableActions) {
 
 export function randomSelection(list) {
   return list[Math.floor(Math.random() * list.length)];
+}
+
+export function randomInt(low, high) {
+  return Math.floor(Math.random() * (high-low)) + low;
 }
