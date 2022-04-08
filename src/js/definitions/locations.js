@@ -44,10 +44,10 @@ export function locations(character) {
         }
     },
     [TUNNEL1]: {
-        "description": commonActionDescriptions.tunnel1,
+        "description": commonPlaceDescriptions.tunnel1,
         "forbidden_acts": [ACTIONS.SWIM, ACTIONS.FLY],
         [ACTIONS.RUN] : {
-          loction: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
+          location: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
           mode: MODES.EXPLORING
         },
         [ACTIONS.HIDE] : {
@@ -56,10 +56,10 @@ export function locations(character) {
         }
     },
     [TUNNEL2] : {
-      "description" : commonActionDescriptions.tunnel2, 
+      "description" : commonPlaceDescriptions.tunnel2, 
       "forbidden_acts" : [ACTIONS.SWIM, ACTIONS.FLY],
       [ACTIONS.RUN] : {
-        loction: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
+        location: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
         mode: MODES.EXPLORING
       },
       [ACTIONS.HIDE] : {
@@ -68,7 +68,7 @@ export function locations(character) {
       }
     },
     [TUNNEL3] : {
-      "description": commonActionDescriptions.tunnel3, 
+      "description": commonPlaceDescriptions.tunnel3, 
       "forbidden_acts": [ACTIONS.SWIM, ACTIONS.FLY],
       [ACTIONS.RUN] : {
         location: randomSelection([TUNNEL3]),
@@ -80,7 +80,7 @@ export function locations(character) {
       }
     },
     [MINE]: {
-      "description": commonActionDescriptions.mine,
+      "description": commonPlaceDescriptions.mine,
       "forbidden_acts": [ACTIONS.SWIM, ACTIONS.FLY],
       [ACTIONS.RUN] : {
         loction : randomSelection([MINE]),
@@ -92,7 +92,7 @@ export function locations(character) {
       }
     },
     [SECONDTUNNEL1]: {
-      "description": commonActionDescriptions.secondtunnel1,
+      "description": commonPlaceDescriptions.secondtunnel1,
       "forbidden_acts": [ACTIONS.SWIM, ACTIONS.FLY],
       [ACTIONS.RUN] : {
         location: randomSelection([SECONDTUNNEL1]),
@@ -104,7 +104,7 @@ export function locations(character) {
       }
     },
     [CAVERN]: {
-      "description": commonActionDescriptions.cavern,
+      "description": commonPlaceDescriptions.cavern,
       "forbidden_acts": [ACTIONS.SWIM, ACTIONS.FLY],
       [ACTIONS.RUN] : {
         location: randomSelection([CAVERN]),

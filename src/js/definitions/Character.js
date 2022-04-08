@@ -1,5 +1,6 @@
 
 import colors from "colors";
+import * as MODES from "./modes";
 
 export const BLUE = "BlueGuy".brightBlue;
 export const RED = "RedGuy".brightRed;
@@ -11,8 +12,11 @@ export function createCharacter (name, location, character) {
         name,
         location,
         character,
-        mode: 'exploring',
-        health: 5,
+        mode: MODES.EXPLORING,
+        health: 50,
         maxHealth: 50,
+        points: 0,
+        equipped: [],
+        stashed: [],
     };
 }

@@ -1,16 +1,16 @@
 export function fight(character, monster) {
 
-    let alive = true;
-    let running = false;
+  let alive = true;
+  let running = false;
 
-    while(alive && !running) {
+  while(alive && !running) {
 
     let choiceOfFight = prompt("You are in fighting mode. What would you like to do?\n");
 
 
     let chanceOfSuccess = Math.floor(Math.random()*2);
 
-    //Amount of damaged taken should depend on weapon, weapons gained depend on level. 
+    //Amount of damaged taken should depend on weapon, weapons gained depend on level. Amount of damage taken to character depends on level 
     if(chanceOfSuccess === 1) {
         enemyHealth = enemyHealth - 1 
         alert(`You hit. Their health is now at ${enemyHealth}. The other player will go.`)
@@ -30,8 +30,8 @@ export function fight(character, monster) {
     if(choiceOfFight === "leave") {
         running = true;     //Exit this file
     } else if(health < 0 ) {
-        alert("You have died. \n\n Game Over")
+        alert("You died. \n\n--------- Game Over ---------")
         alive = false     //End Game
     }
-    }
+  }
 }
