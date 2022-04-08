@@ -1,5 +1,6 @@
-import {randomInt} from "../tools";
+import {randomInt, randomSelection} from "../tools";
 import {CAVE, TUNNEL1} from "./locations";
+import * as bat from "../artwork/bat";
 
 
 export const DESCRIPTION = "description";
@@ -11,6 +12,7 @@ export const LOSE_TEXT = "lose_text";
 
 export const BAT = "bat";
 export const TROLL = "troll";
+export const DRAGON = "dragon";
 
 //Types of Enemies: bats, trolls...
 //Function(location, character)
@@ -23,7 +25,9 @@ export function getAllEnemies(character, location, level) {
 
   return {
     [BAT]: {
-      [DESCRIPTION]: `Oh no! It's a ${BAT}!`,
+      [DESCRIPTION]: `Oh no! It's a ${BAT}!`
+        + " It looks something like this:"
+        + randomSelection(bat.artwork),
       [LOCATIONS]: [CAVE, TUNNEL1],
       [HITPOINTS]: randomInt(5,15),
       [WIN_POINTS]: randomInt(1, 5),

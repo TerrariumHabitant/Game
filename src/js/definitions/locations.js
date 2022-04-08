@@ -1,6 +1,8 @@
 import { randomSelection } from "../tools";
 import * as ACTIONS from "./actions";
 import * as MODES from "./modes";
+import {HISTORY} from "./character";
+import * as cave from "../artwork/cave";
 
 
 const commonPlaceDescriptions = {
@@ -32,11 +34,20 @@ export const CAVERN = "cavern";
 
 export const NON_ACTION_KEYS = [DESCRIPTION];
 
-export function getAllLocations(character, numTimesInThisLocation) {
+export function getAllLocations(character) {
+
+  // Count the number of times we've been here before (excluding this time)
+  const numTimesInThisLocation = character[LOCATION + HISTORY].reduce(
+    (reduced, current) => reduced + (current === character[LOCATION] ? 1 : 0),
+    -1,
+  );
 
   return {
     [CAVE]: {
-        [DESCRIPTION]: commonPlaceDescriptions.cave + "You hold your flash light out in front of you and in the dim light you can faintly see a big, old oak door. You walk up What do you want to do?",
+        [DESCRIPTION]: commonPlaceDescriptions.cave
+          + " It looks something like this:"
+          + randomSelection(cave.artwork)
+          + "You hold your flash light out in front of you and in the dim light you can faintly see a big, old oak door. You walk up.\nWhat do you want to do?",
         [ACTIONS.RUN]: {
           [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
           [MODES.MODE]: MODES.EXPLORING,
