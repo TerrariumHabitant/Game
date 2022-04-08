@@ -6,13 +6,14 @@ import {
   RESULT_TEXT,
 } from './definitions/locations';
 import { HISTORY } from './definitions/character';
-import { prompt, print, clear, wait, randomSelection } from './tools';
+import {prompt, print, clear, wait, randomSelection, saveCharacter} from './tools';
 import * as MODES from './definitions/modes';
 import * as divider from './artwork/divider';
 
 export async function explore(character) {
   // Record that we were here
   character[LOCATION + HISTORY].push(character[LOCATION]);
+  saveCharacter(character);
 
   const { [character[LOCATION]]: currentLocation } = getAllLocations(character);
   const availableActions = Object.keys(currentLocation).filter(
@@ -41,7 +42,7 @@ export async function explore(character) {
   // If this action has a result text, then print it
   if (currentLocation[action][RESULT_TEXT]) {
     print(currentLocation[action][RESULT_TEXT]);
-    await wait(2000);
+    await wait(currentLocation[action][RESULT_TEXT].length * 75);
   }
 
   // Update character's location and return

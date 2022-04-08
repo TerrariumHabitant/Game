@@ -55,8 +55,6 @@ async function setup() {
 async function play(character) {
   let exit = false;
   while (!exit) {
-    saveCharacter(character);
-
     switch (character.mode) {
       case MODES.EXPLORING:
         character = await explore(character);
@@ -65,6 +63,7 @@ async function play(character) {
         // character = await fight(character);
         break;
     }
+    saveCharacter(character);
   }
 }
 

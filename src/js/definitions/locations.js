@@ -58,6 +58,10 @@ export function getAllLocations(character) {
       'sniff the door': {
         [RESULT_TEXT]: 'It smells like a big, old oak door.',
       },
+      'search for key': {
+        [RESULT_TEXT]:
+          'You vainly assume that a key would just by lying about. And so you search. And search. And search. And your arrogance is rightly rewarded with nothing at all.',
+      },
     },
     [TUNNEL1]: {
       [DESCRIPTION]: (() => {
