@@ -1,4 +1,5 @@
-export const artwork = [`
+export const artwork = [
+  `
                                                                                         
                                                                                         
                                                                                         
@@ -29,7 +30,7 @@ export const artwork = [`
                                                                                         
                                                                                         
 `.gray,
-`
+  `
                                                                                   
   ▓▓▓▓▓▓                                                            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓
     ▒▒▓▓██▓▓                                                    ▓▓▓▓████▓▓▓▓▒▒    
@@ -56,5 +57,5 @@ export const artwork = [`
                           ▓▓▓▓▓▓▓▓████▓▓████████████                              
                             ██▓▓████▓▓████████                                    
 
-`.gray
+`.gray,
 ];

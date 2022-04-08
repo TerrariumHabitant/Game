@@ -8,7 +8,7 @@
     "prompt": "1.2.0"
   },
   "scripts": {
-    "lint": "eslint src/js/**.js --fix",
+    "lint": "eslint src/js/**/**.js --fix",
     "start": "yarn run lint && babel-node src/js/index.js"
   },
   "devDependencies": {

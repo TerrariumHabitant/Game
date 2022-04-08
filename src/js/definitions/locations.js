@@ -1,41 +1,39 @@
-import { randomSelection } from "../tools";
-import * as ACTIONS from "./actions";
-import * as MODES from "./modes";
-import {HISTORY} from "./character";
-import * as cave from "../artwork/cave";
-
+import { randomSelection } from '../tools';
+import * as ACTIONS from './actions';
+import * as MODES from './modes';
+import { HISTORY } from './character';
+import * as cave from '../artwork/cave';
 
 const commonPlaceDescriptions = {
-  "cave": "The cave is dark, with many bats.",
-  "tunnel1": "The tunnel is long, and dark, and narrow",
-  "tunnel2": "You are back in the first tunnel, this time you notice...",
-  "tunnel3": "You are back in the first tunnel again, this time you notice...",
-  "mine": "The mine is deep and dark, and there are noises.",
-  "secondtunnel1": "This tunnel is shorter and you can hear drip noises.",
-  "cavern": "This space is fairly bigger than you think."
-}
+  cave: 'The cave is dark, with many bats.',
+  tunnel1: 'The tunnel is long, and dark, and narrow',
+  tunnel2: 'You are back in the first tunnel, this time you notice...',
+  tunnel3: 'You are back in the first tunnel again, this time you notice...',
+  mine: 'The mine is deep and dark, and there are noises.',
+  secondtunnel1: 'This tunnel is shorter and you can hear drip noises.',
+  cavern: 'This space is fairly bigger than you think.',
+};
 
-const commonActionDescriptions = {
-  "run": "you began to run ",
-  "look for key": "You began to search. "
-}
+// const commonActionDescriptions = {
+//   run: 'you began to run ',
+//   'look for key': 'You began to search. ',
+// };
 
-export const DESCRIPTION = "description";
-export const LOCATION = "location";
-export const RESULT_TEXT = "result";
+export const DESCRIPTION = 'description';
+export const LOCATION = 'location';
+export const RESULT_TEXT = 'result';
 
-export const CAVE = "cave";
-export const TUNNEL1 = "tunnel1";
-export const TUNNEL2 = "tunnel2";
-export const TUNNEL3 = "tunnel3";
-export const MINE = "mine";
-export const SECONDTUNNEL1 = "secondtunnel1";
-export const CAVERN = "cavern";
+export const CAVE = 'cave';
+export const TUNNEL1 = 'tunnel1';
+export const TUNNEL2 = 'tunnel2';
+export const TUNNEL3 = 'tunnel3';
+export const MINE = 'mine';
+export const SECONDTUNNEL1 = 'secondtunnel1';
+export const CAVERN = 'cavern';
 
 export const NON_ACTION_KEYS = [DESCRIPTION];
 
 export function getAllLocations(character) {
-
   // Count the number of times we've been here before (excluding this time)
   const numTimesInThisLocation = character[LOCATION + HISTORY].reduce(
     (reduced, current) => reduced + (current === character[LOCATION] ? 1 : 0),
@@ -44,94 +42,98 @@ export function getAllLocations(character) {
 
   return {
     [CAVE]: {
-        [DESCRIPTION]: commonPlaceDescriptions.cave
-          + " It looks something like this:"
-          + randomSelection(cave.artwork)
-          + "You hold your flash light out in front of you and in the dim light you can faintly see a big, old oak door. You walk up.\nWhat do you want to do?",
-        [ACTIONS.RUN]: {
-          [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
-          [MODES.MODE]: MODES.EXPLORING,
-        },
-        [ACTIONS.HIDE]: {
-          [LOCATION]: CAVE,
-          [MODES.MODE]: MODES.EXPLORING
-        },
-      "sniff the door": {
-          [RESULT_TEXT]: "It smells like a big, old oak door."
-      }
+      [DESCRIPTION]:
+        commonPlaceDescriptions.cave +
+        ' It looks something like this:' +
+        randomSelection(cave.artwork) +
+        'You hold your flash light out in front of you and in the dim light you can faintly see a big, old oak door. You walk up.\nWhat do you want to do?',
+      [ACTIONS.RUN]: {
+        [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
+        [MODES.MODE]: MODES.EXPLORING,
+      },
+      [ACTIONS.HIDE]: {
+        [LOCATION]: CAVE,
+        [MODES.MODE]: MODES.EXPLORING,
+      },
+      'sniff the door': {
+        [RESULT_TEXT]: 'It smells like a big, old oak door.',
+      },
     },
     [TUNNEL1]: {
-        [DESCRIPTION]: (() => {
-          if (numTimesInThisLocation === 0) {
-            return commonPlaceDescriptions.tunnel1;
-          }
-          return commonPlaceDescriptions.tunnel1 + ` and you've been here ${numTimesInThisLocation} times before!`;
-        })(),
-        [ACTIONS.RUN] : {
-          [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
-          [MODES.MODE]: MODES.EXPLORING
-        },
-        [ACTIONS.HIDE] : {
-          [LOCATION]: randomSelection([TUNNEL1]),
-          [MODES.MODE]: MODES.EXPLORING
+      [DESCRIPTION]: (() => {
+        if (numTimesInThisLocation === 0) {
+          return commonPlaceDescriptions.tunnel1;
         }
-    },
-    [TUNNEL2] : {
-      [DESCRIPTION] : commonPlaceDescriptions.tunnel2, 
-      [ACTIONS.RUN] : {
+        return (
+          commonPlaceDescriptions.tunnel1 +
+          ` and you've been here ${numTimesInThisLocation} times before!`
+        );
+      })(),
+      [ACTIONS.RUN]: {
         [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
-        [MODES.MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING,
       },
-      [ACTIONS.HIDE] : {
-        [LOCATION]: randomSelection([TUNNEL2]),
-        [MODES.MODE]: MODES.EXPLORING
-      }
+      [ACTIONS.HIDE]: {
+        [LOCATION]: randomSelection([TUNNEL1]),
+        [MODES.MODE]: MODES.EXPLORING,
+      },
     },
-    [TUNNEL3] : {
-      [DESCRIPTION]: commonPlaceDescriptions.tunnel3, 
-      [ACTIONS.RUN] : {
-        [LOCATION]: randomSelection([TUNNEL3]),
-        [MODES.MODE]: MODES.EXPLORING
+    [TUNNEL2]: {
+      [DESCRIPTION]: commonPlaceDescriptions.tunnel2,
+      [ACTIONS.RUN]: {
+        [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
+        [MODES.MODE]: MODES.EXPLORING,
       },
-      [ACTIONS.HIDE] : {
+      [ACTIONS.HIDE]: {
+        [LOCATION]: randomSelection([TUNNEL2]),
+        [MODES.MODE]: MODES.EXPLORING,
+      },
+    },
+    [TUNNEL3]: {
+      [DESCRIPTION]: commonPlaceDescriptions.tunnel3,
+      [ACTIONS.RUN]: {
         [LOCATION]: randomSelection([TUNNEL3]),
-        [MODES.MODE]: MODES.EXPLORING
-      }
+        [MODES.MODE]: MODES.EXPLORING,
+      },
+      [ACTIONS.HIDE]: {
+        [LOCATION]: randomSelection([TUNNEL3]),
+        [MODES.MODE]: MODES.EXPLORING,
+      },
     },
     [MINE]: {
       [DESCRIPTION]: commonPlaceDescriptions.mine,
-      [ACTIONS.RUN] : {
-        [LOCATION] : randomSelection([MINE]),
-        [MODES.MODE]: MODES.EXPLORING
-      },
-      [ACTIONS.HIDE] : {
+      [ACTIONS.RUN]: {
         [LOCATION]: randomSelection([MINE]),
-        [MODES.MODE]: MODES.EXPLORING
-      }
+        [MODES.MODE]: MODES.EXPLORING,
+      },
+      [ACTIONS.HIDE]: {
+        [LOCATION]: randomSelection([MINE]),
+        [MODES.MODE]: MODES.EXPLORING,
+      },
     },
     [SECONDTUNNEL1]: {
       [DESCRIPTION]: commonPlaceDescriptions.secondtunnel1,
-      [ACTIONS.RUN] : {
+      [ACTIONS.RUN]: {
         [LOCATION]: randomSelection([SECONDTUNNEL1]),
-        [MODES.MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING,
       },
-      [ACTIONS.HIDE] : {
+      [ACTIONS.HIDE]: {
         [LOCATION]: randomSelection([SECONDTUNNEL1]),
-        [MODES.MODE]: MODES.EXPLORING
-      }
+        [MODES.MODE]: MODES.EXPLORING,
+      },
     },
     [CAVERN]: {
       [DESCRIPTION]: commonPlaceDescriptions.cavern,
-      [ACTIONS.RUN] : {
+      [ACTIONS.RUN]: {
         [LOCATION]: randomSelection([CAVERN]),
-        [MODES.MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING,
       },
-      [ACTIONS.HIDE] : {
+      [ACTIONS.HIDE]: {
         [LOCATION]: randomSelection([CAVERN]),
-        [MODES.MODE]: MODES.EXPLORING
-      }
-    }
-  }
+        [MODES.MODE]: MODES.EXPLORING,
+      },
+    },
+  };
 }
 
 //   return {
@@ -139,11 +141,11 @@ export function getAllLocations(character) {
 //       [DESCRIPTION]: commonPlaceDescriptions.cave + " You hold your flash ligh out in front of you and in the dim light you can faintly see a big, old oak foor. Remember, since you are red you can light on fire in the cave. What do you want to do?\n",
 //       "actions": {
 //         "run forward": {
-//           "result": "tunnel", 
+//           "result": "tunnel",
 //           [DESCRIPTION]: commonActionDescriptions.run
 //         },
 //         "run": {
-//           "result": "tunnel", 
+//           "result": "tunnel",
 //           [DESCRIPTION]: commonActionDescriptions.run
 //         },
 //         "hide": {
@@ -223,7 +225,7 @@ export function getAllLocations(character) {
 //       }
 //     },
 //     "second tunnel": {
-//       [DESCRIPTION]: commonPlaceDescriptions.secondtunnel + " What do you want to do?\n", 
+//       [DESCRIPTION]: commonPlaceDescriptions.secondtunnel + " What do you want to do?\n",
 //       "actions": {
 //         "run" : {
 //           "result": Math.floor(Math.random()*4),
@@ -245,7 +247,7 @@ export function getAllLocations(character) {
 //           "result": "second tunnel. ",
 //           [DESCRIPTION]: "You begin to feel very hot, you look around and you can see that the walls are rough and filled with crevices and bumps. "
 //         },
-//         "go back" : { 
+//         "go back" : {
 //           "result": "mine. ",
 //           [DESCRIPTION]: "You go back to the mine. "
 //         }
@@ -265,8 +267,8 @@ export function getAllLocations(character) {
 //         "hide" : {
 //           "result": "cavern",
 //           [DESCRIPTION]: "This is a cavern. "
-//         }, 
-//         "explore" : { 
+//         },
+//         "explore" : {
 //           "result": "second tunnel",
 //           [DESCRIPTION]: "It is very dark you find a tunnel and walk down it, you realize you have already been down this tunnel. "
 //         },
