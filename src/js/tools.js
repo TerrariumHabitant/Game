@@ -59,5 +59,9 @@ export function randomSelection(list) {
 }
 
 export function randomInt(low, high) {
-  return Math.floor(Math.random() * (high-low)) + low;
+  return Math.floor(Math.random() * (high - low)) + low;
+}
+
+export async function wait(milliseconds) {
+  await new Promise((resolve) => setTimeout(resolve, milliseconds));
 }

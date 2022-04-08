@@ -1,7 +1,9 @@
 import {randomInt} from "../tools";
+import {CAVE, TUNNEL1} from "./locations";
 
 
 export const DESCRIPTION = "description";
+export const LOCATIONS = "locations";
 export const HITPOINTS = "hitpoints";
 export const WIN_TEXT = "win_text";
 export const WIN_POINTS = "win_points";
@@ -15,13 +17,14 @@ export const TROLL = "troll";
 //Enemies points
 //Key points
 
-//level - items aquired, time played...
+//level - items acquired, time played...
 
 export function getAllEnemies(character, location, level) {
 
   return {
     [BAT]: {
       [DESCRIPTION]: `Oh no! It's a ${BAT}!`,
+      [LOCATIONS]: [CAVE, TUNNEL1],
       [HITPOINTS]: randomInt(5,15),
       [WIN_POINTS]: randomInt(1, 5),
       [WIN_TEXT]: `You beat that ${BAT}. Yay?\n\n ... but you gained some experience. So there's that, I guess.`,

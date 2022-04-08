@@ -1,7 +1,6 @@
 import { randomSelection } from "../tools";
 import * as ACTIONS from "./actions";
 import * as MODES from "./modes";
-import {MODE} from "./modes";
 
 
 const commonPlaceDescriptions = {
@@ -21,7 +20,8 @@ const commonActionDescriptions = {
 
 export const DESCRIPTION = "description";
 export const LOCATION = "location";
-  
+export const RESULT_TEXT = "result";
+
 export const CAVE = "cave";
 export const TUNNEL1 = "tunnel1";
 export const TUNNEL2 = "tunnel2";
@@ -30,6 +30,8 @@ export const MINE = "mine";
 export const SECONDTUNNEL1 = "secondtunnel1";
 export const CAVERN = "cavern";
 
+export const NON_ACTION_KEYS = [DESCRIPTION];
+
 export function getAllLocations(character, numTimesInThisLocation) {
 
   return {
@@ -37,12 +39,15 @@ export function getAllLocations(character, numTimesInThisLocation) {
         [DESCRIPTION]: commonPlaceDescriptions.cave + "You hold your flash light out in front of you and in the dim light you can faintly see a big, old oak door. You walk up What do you want to do?",
         [ACTIONS.RUN]: {
           [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
-          [MODE]: MODES.EXPLORING,
+          [MODES.MODE]: MODES.EXPLORING,
         },
         [ACTIONS.HIDE]: {
           [LOCATION]: CAVE,
-          [MODE]: MODES.EXPLORING
-        }
+          [MODES.MODE]: MODES.EXPLORING
+        },
+      "sniff the door": {
+          [RESULT_TEXT]: "It smells like a big, old oak door."
+      }
     },
     [TUNNEL1]: {
         [DESCRIPTION]: (() => {
@@ -53,66 +58,66 @@ export function getAllLocations(character, numTimesInThisLocation) {
         })(),
         [ACTIONS.RUN] : {
           [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
-          [MODE]: MODES.EXPLORING
+          [MODES.MODE]: MODES.EXPLORING
         },
         [ACTIONS.HIDE] : {
           [LOCATION]: randomSelection([TUNNEL1]),
-          [MODE]: MODES.EXPLORING
+          [MODES.MODE]: MODES.EXPLORING
         }
     },
     [TUNNEL2] : {
       [DESCRIPTION] : commonPlaceDescriptions.tunnel2, 
       [ACTIONS.RUN] : {
         [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
-        [MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING
       },
       [ACTIONS.HIDE] : {
         [LOCATION]: randomSelection([TUNNEL2]),
-        [MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING
       }
     },
     [TUNNEL3] : {
       [DESCRIPTION]: commonPlaceDescriptions.tunnel3, 
       [ACTIONS.RUN] : {
         [LOCATION]: randomSelection([TUNNEL3]),
-        [MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING
       },
       [ACTIONS.HIDE] : {
         [LOCATION]: randomSelection([TUNNEL3]),
-        [MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING
       }
     },
     [MINE]: {
       [DESCRIPTION]: commonPlaceDescriptions.mine,
       [ACTIONS.RUN] : {
         [LOCATION] : randomSelection([MINE]),
-        [MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING
       },
       [ACTIONS.HIDE] : {
         [LOCATION]: randomSelection([MINE]),
-        [MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING
       }
     },
     [SECONDTUNNEL1]: {
       [DESCRIPTION]: commonPlaceDescriptions.secondtunnel1,
       [ACTIONS.RUN] : {
         [LOCATION]: randomSelection([SECONDTUNNEL1]),
-        [MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING
       },
       [ACTIONS.HIDE] : {
         [LOCATION]: randomSelection([SECONDTUNNEL1]),
-        [MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING
       }
     },
     [CAVERN]: {
       [DESCRIPTION]: commonPlaceDescriptions.cavern,
       [ACTIONS.RUN] : {
         [LOCATION]: randomSelection([CAVERN]),
-        [MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING
       },
       [ACTIONS.HIDE] : {
         [LOCATION]: randomSelection([CAVERN]),
-        [MODE]: MODES.EXPLORING
+        [MODES.MODE]: MODES.EXPLORING
       }
     }
   }

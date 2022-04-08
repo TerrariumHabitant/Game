@@ -1,7 +1,13 @@
-import { DESCRIPTION, LOCATION, getAllLocations } from './definitions/locations';
+import {
+  DESCRIPTION,
+  LOCATION,
+  getAllLocations,
+  NON_ACTION_KEYS,
+  RESULT_TEXT,
+} from './definitions/locations';
 import { HISTORY } from './definitions/character';
-import { ALL_ACTIONS } from './definitions/actions';
-import { prompt, print, clear } from './tools';
+import { prompt, print, clear, wait } from './tools';
+import * as MODES from './definitions/modes';
 
 export async function explore(character) {
   // Record that we were here
@@ -12,11 +18,22 @@ export async function explore(character) {
     -1,
   );
 
+  // TODO: Determine if there's an enemy at this location. If so, switch the mode to fighting!
+  const enemyExistsHere = false;
+  if (enemyExistsHere) {
+    return {
+      ...character,
+      [MODES.MODE]: MODES.FIGHTING,
+    };
+  }
+
   const { [character[LOCATION]]: currentLocation } = getAllLocations(
     character,
     numTimesInThisLocation,
   );
-  const availableActions = Object.keys(currentLocation).filter((key) => ALL_ACTIONS.includes(key));
+  const availableActions = Object.keys(currentLocation).filter(
+    (key) => !NON_ACTION_KEYS.includes(key),
+  );
 
   clear();
   print(
@@ -27,10 +44,14 @@ export async function explore(character) {
   print('Your options are: ' + availableActions.join(', '));
   const action = await prompt('What do you want to do?', availableActions);
 
-  character = {
+  if (currentLocation[action][RESULT_TEXT]) {
+    print(currentLocation[action][RESULT_TEXT]);
+    await wait(2000);
+  }
+
+  // Update character's location and return
+  return {
     ...character,
     ...currentLocation[action],
   };
-
-  return character;
 }

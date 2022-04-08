@@ -1,4 +1,4 @@
-import { print, clear, prompt } from './tools';
+import { print, clear, prompt, wait } from './tools';
 
 import * as CHARACTERS from './definitions/Character';
 import * as LOCATIONS from './definitions/locations';
@@ -14,6 +14,7 @@ async function game() {
     `What character would you like to be?\n<${CHARACTERS.RED}\n<${CHARACTERS.BLUE}\n<${CHARACTERS.GREEN}\n<${CHARACTERS.PURPLE}\n`,
   );
   print('You picked ' + characterChoice);
+  await wait(2000);
 
   let character = createCharacter(name, LOCATIONS.CAVE, characterChoice);
 
