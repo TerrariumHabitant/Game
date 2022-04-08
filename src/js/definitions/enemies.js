@@ -3,6 +3,6 @@
 //Enemies points 
 //Key points 
 
-function enemyChoice(character, location, level) //level - items aquired, time played... 
+function enemyChoice(character, location, level){} //level - items aquired, time played...
 
 

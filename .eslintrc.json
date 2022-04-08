@@ -1,0 +1,25 @@
+{
+    "root": true,
+    "env": {
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2021,
+        "sourceType": "module"
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:prettier/recommended"
+    ],
+    "rules": {
+        "prefer-destructuring": "warn",
+        "spaced-comment": "warn",
+        "multiline-comment-style": "off",
+        "no-confusing-arrow": ["error", {"allowParens": false}],
+        "require-jsdoc": "off",
+        "valid-jsdoc": "error",
+        "no-underscore-dangle": "off",
+        "eslint-comments/disable-enable-pair": "off",
+        "import/extensions": "off"
+    }
+}
