@@ -9,9 +9,9 @@ import {createCharacter} from "./definitions/Character";
 import {explore} from "./explore";
 
 async function game() {
-    const {name} = await prompt("name", "What is your name?");
+    const name = await prompt("What is your name?");
     alert("Hi " + name + " Welcome to The Game\n");
-    const {characterChoice} = await prompt("characterChoice", 
+    const characterChoice = await prompt(
     `What character would you like to be?\n<${
         CHARACTERS.RED}\n<${
         CHARACTERS.BLUE}\n<${
