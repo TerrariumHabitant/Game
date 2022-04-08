@@ -19,6 +19,7 @@ export async function explore(character) {
     (key) => !NON_ACTION_KEYS.includes(key),
   );
 
+  // Print the description of this location
   clear();
   print(randomSelection(divider.artwork));
   print(currentLocation[DESCRIPTION]);
@@ -33,9 +34,11 @@ export async function explore(character) {
     };
   }
 
+  // Ask the user what to do
   print('Your options are: ' + availableActions.join(', '));
   const action = await prompt('What do you want to do?', availableActions);
 
+  // If this action has a result text, then print it
   if (currentLocation[action][RESULT_TEXT]) {
     print(currentLocation[action][RESULT_TEXT]);
     await wait(2000);
