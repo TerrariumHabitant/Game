@@ -6,9 +6,9 @@ import {
   RESULT_TEXT,
 } from './definitions/locations';
 import { HISTORY } from './definitions/character';
-import {prompt, print, clear, wait, randomSelection, saveCharacter} from './tools';
+import { prompt, print, clear, wait, saveCharacter } from './tools'; // randomSelection
 import * as MODES from './definitions/modes';
-import * as divider from './artwork/divider';
+// import * as divider from './artwork/divider';
 
 export async function explore(character) {
   // Record that we were here
@@ -22,11 +22,12 @@ export async function explore(character) {
 
   // Print the description of this location
   clear();
-  print(randomSelection(divider.artwork));
+  // print(randomSelection(divider.artwork));
   print(currentLocation[DESCRIPTION]);
   print('');
 
   // TODO: Determine if there's an enemy at this location. If so, switch the mode to fighting!
+  // Enemy? location, level(number of enemies defeated)
   const enemyExistsHere = false;
   if (enemyExistsHere) {
     return {

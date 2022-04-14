@@ -20,7 +20,11 @@ export async function save() {
     print('Here are your existing saved games.');
     const gameKeys = Object.keys(games);
     gameKeys.forEach((gameKey) => print(gameKey + '\n'));
+  } catch (_) {
+    // ignore
+  }
 
+  try {
     const saveName = await prompt('Please choose a name for your save');
     await fs.writeFileSync(
       './savedGames.json',
@@ -33,7 +37,7 @@ export async function save() {
       ),
     );
   } catch (_) {
-    console.error('Sorry, there was an issue saving your game :(');
+    console.error('Sorry, there was an issue saving your game :(', _);
   }
 }
 

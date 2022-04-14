@@ -1,17 +1,23 @@
-import { randomSelection } from '../tools';
+import { randomInt, randomSelection } from '../tools';
 import * as ACTIONS from './actions';
 import * as MODES from './modes';
 import { HISTORY } from './character';
 import * as cave from '../artwork/cave';
 
 const commonPlaceDescriptions = {
-  cave: 'The cave is dark, with many bats.',
-  tunnel1: 'The tunnel is long, and dark, and narrow',
-  tunnel2: 'You are back in the first tunnel, this time you notice...',
-  tunnel3: 'You are back in the first tunnel again, this time you notice...',
-  mine: 'The mine is deep and dark, and there are noises.',
-  secondtunnel1: 'This tunnel is shorter and you can hear drip noises.',
+  cave: 'You find yourself in a cave, which is dark, and filled with many bats.',
+  northtunnel: 'You enter a tunnel(the northern most tunnel) which is long, and dark, and narrow.',
+  northtunnel1:
+    'You are back in the North tunnel, this time you notice exactly nothing more or less than you noticed before.', // tunnel 1 = tunnel2 = tunnel3
+  tunnel2: 'You are back in the North tunnel again, super fun.',
+  mine: 'You seemed to have entered a mine is deep and dark, and there are noises; they are weird.',
+  southtunnel:
+    'This tunnel is shorter and you can hear drip noises. (This tunnel is the farthest South you can get in this cave system)',
+  southtunnel1: 'You are back in the South tunnel.Yay!',
   cavern: 'This space is fairly bigger than you think.',
+  easttunnel: 'This tunnel is longer than the previous ones (it is the East tunnel)',
+  shaft:
+    'There is a railroad here - obviously long since abandoned. There is a cart, and the sun can be seen in the roof in some places, but the are much too far to reach.', // This is as far as you can go.
 };
 
 // const commonActionDescriptions = {
@@ -24,12 +30,12 @@ export const LOCATION = 'location';
 export const RESULT_TEXT = 'result';
 
 export const CAVE = 'cave';
-export const TUNNEL1 = 'tunnel1';
-export const TUNNEL2 = 'tunnel2';
-export const TUNNEL3 = 'tunnel3';
+export const NORTHTUNNEL = 'Northtunnel';
+export const EASTTUNNEL = 'Easttunnel';
 export const MINE = 'mine';
-export const SECONDTUNNEL1 = 'secondtunnel1';
+export const SOUTHTUNNEL = 'Southtunnel';
 export const CAVERN = 'cavern';
+export const SHAFT = 'shaft';
 
 export const NON_ACTION_KEYS = [DESCRIPTION];
 
@@ -46,9 +52,10 @@ export function getAllLocations(character) {
         commonPlaceDescriptions.cave +
         ' It looks something like this:' +
         randomSelection(cave.artwork) +
-        'You hold your flash light out in front of you and in the dim light you can faintly see a big, old oak door. You walk up.\nWhat do you want to do?',
+        'You hold your flash light out in front of you and in the dim light you can faintly see a big, old oak door.\nWhat do you want to do?' +
+        (character.hasTheOakDoorKey ? '\nRemember, you have a key' : ''),
       [ACTIONS.RUN]: {
-        [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
+        [LOCATION]: randomSelection([NORTHTUNNEL, MINE]),
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
@@ -59,55 +66,68 @@ export function getAllLocations(character) {
         [RESULT_TEXT]: 'It smells like a big, old oak door.',
       },
       'search for key': {
+        // 1/100 chance finding it on first time, you SHOULD look more than once
+        [RESULT_TEXT]: (() => {
+          if (character.foundTheOakDoorKey) {
+            return "Yup. It's in your pocket. Just where you left it.";
+          }
+          const chance = randomInt(1, 100);
+          if (chance === 43) {
+            character.foundTheOakDoorKey = true;
+            return 'You found the key!';
+          }
+          return 'You vainly assume that a key would just be lying about. And so you search. And search. And search. And your arrogance is rightly rewarded with nothing at all.';
+        })(),
+      },
+      // 'pick up key': {
+      //   [RESULT_TEXT]: 'You pick up the key and put it in your pocket',
+      //   hasTheOakDoorKey: true,
+      // },
+      // ...(character.hasTheOakDoorKey
+      //   ? {
+      //       'use the key': {
+      //         [RESULT_TEXT]: 'You used the key on the door, and it is now open',
+      //         oakDoorIsOpen: true,
+      //       },
+      //     }
+      // : {}),
+      'find a way out': {
+        [RESULT_TEXT]: 'You should probaly start by finding the key to the door.',
+      },
+      'go to door': {
         [RESULT_TEXT]:
-          'You vainly assume that a key would just by lying about. And so you search. And search. And search. And your arrogance is rightly rewarded with nothing at all.',
+          'You notice the door has a keyhole, it is probably VERY good that you noticed this.',
+      },
+      scream: {
+        [RESULT_TEXT]: 'You may.' + '                                       \n\n\n' + 'Now what?',
       },
     },
-    [TUNNEL1]: {
+    [NORTHTUNNEL]: {
       [DESCRIPTION]: (() => {
         if (numTimesInThisLocation === 0) {
-          return commonPlaceDescriptions.tunnel1;
+          return commonPlaceDescriptions.northtunnel;
         }
         return (
-          commonPlaceDescriptions.tunnel1 +
+          [commonPlaceDescriptions.northtunnel1] +
           ` and you've been here ${numTimesInThisLocation} times before!`
         );
       })(),
       [ACTIONS.RUN]: {
-        [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
+        [LOCATION]: randomSelection([MINE, CAVE]),
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
-        [LOCATION]: randomSelection([TUNNEL1]),
+        [LOCATION]: randomSelection([NORTHTUNNEL]),
         [MODES.MODE]: MODES.EXPLORING,
       },
-    },
-    [TUNNEL2]: {
-      [DESCRIPTION]: commonPlaceDescriptions.tunnel2,
-      [ACTIONS.RUN]: {
-        [LOCATION]: randomSelection([TUNNEL1, TUNNEL2, TUNNEL3]),
-        [MODES.MODE]: MODES.EXPLORING,
-      },
-      [ACTIONS.HIDE]: {
-        [LOCATION]: randomSelection([TUNNEL2]),
-        [MODES.MODE]: MODES.EXPLORING,
-      },
-    },
-    [TUNNEL3]: {
-      [DESCRIPTION]: commonPlaceDescriptions.tunnel3,
-      [ACTIONS.RUN]: {
-        [LOCATION]: randomSelection([TUNNEL3]),
-        [MODES.MODE]: MODES.EXPLORING,
-      },
-      [ACTIONS.HIDE]: {
-        [LOCATION]: randomSelection([TUNNEL3]),
-        [MODES.MODE]: MODES.EXPLORING,
+      '': {
+        [RESULT_TEXT]: '',
       },
     },
     [MINE]: {
       [DESCRIPTION]: commonPlaceDescriptions.mine,
       [ACTIONS.RUN]: {
-        [LOCATION]: randomSelection([MINE]),
+        [LOCATION]: randomSelection([SOUTHTUNNEL, NORTHTUNNEL]),
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
@@ -115,25 +135,47 @@ export function getAllLocations(character) {
         [MODES.MODE]: MODES.EXPLORING,
       },
     },
-    [SECONDTUNNEL1]: {
-      [DESCRIPTION]: commonPlaceDescriptions.secondtunnel1,
+    [SOUTHTUNNEL]: {
+      [DESCRIPTION]: commonPlaceDescriptions.southtunnel,
       [ACTIONS.RUN]: {
-        [LOCATION]: randomSelection([SECONDTUNNEL1]),
+        [LOCATION]: randomSelection([MINE, CAVERN]),
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
-        [LOCATION]: randomSelection([SECONDTUNNEL1]),
+        [LOCATION]: randomSelection([SOUTHTUNNEL]),
         [MODES.MODE]: MODES.EXPLORING,
       },
     },
     [CAVERN]: {
       [DESCRIPTION]: commonPlaceDescriptions.cavern,
       [ACTIONS.RUN]: {
-        [LOCATION]: randomSelection([CAVERN]),
+        [LOCATION]: randomSelection([EASTTUNNEL, SOUTHTUNNEL]),
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
         [LOCATION]: randomSelection([CAVERN]),
+        [MODES.MODE]: MODES.EXPLORING,
+      },
+    },
+    [EASTTUNNEL]: {
+      [DESCRIPTION]: commonPlaceDescriptions.easttunnel,
+      [ACTIONS.RUN]: {
+        [LOCATION]: randomSelection([SHAFT, CAVERN]),
+        [MODES.MODE]: MODES.EXPLORING,
+      },
+      [ACTIONS.HIDE]: {
+        [LOCATION]: randomSelection([EASTTUNNEL]),
+        [MODES.MODE]: MODES.EXPLORING,
+      },
+    },
+    [SHAFT]: {
+      [DESCRIPTION]: commonPlaceDescriptions.shaft,
+      [ACTIONS.RUN]: {
+        [LOCATION]: randomSelection([EASTTUNNEL, SHAFT]),
+        [MODES.MODE]: MODES.EXPLORING,
+      },
+      [ACTIONS.HIDE]: {
+        [LOCATION]: randomSelection([SHAFT]),
         [MODES.MODE]: MODES.EXPLORING,
       },
     },
