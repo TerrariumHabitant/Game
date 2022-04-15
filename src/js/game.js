@@ -1,9 +1,9 @@
 import { print, clear, prompt, wait, saveCharacter, load } from './tools';
 
-import * as CHARACTERS from './definitions/Character';
+import * as CHARACTERS from './definitions/character';
 import * as LOCATIONS from './definitions/locations';
 import * as MODES from './definitions/modes';
-import { CHARACTER, COLOR, createCharacter, NAME } from './definitions/Character';
+import { CHARACTER, COLOR, createCharacter, NAME } from './definitions/character';
 import { explore } from './explore';
 
 async function setup() {
