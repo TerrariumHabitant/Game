@@ -1,2 +1,2 @@
 # Game
-This is a choose-your-adventure game. 
+This is a choose-your-own-adventure game. 
