@@ -1,9 +1,11 @@
+// actions and functions called from elsewhere in the code
 import { randomInt, randomSelection } from '../tools';
 import * as ACTIONS from './actions';
 import * as MODES from './modes';
 import { HISTORY } from './character';
 import * as cave from '../artwork/cave';
 
+// Description of Commmon Places within the game map
 const commonPlaceDescriptions = {
   cave: 'You find yourself in a cave, which is dark, and filled with many bats.',
   northtunnel: 'You enter a tunnel(the northern most tunnel) which is long, and dark, and narrow.',
@@ -17,7 +19,7 @@ const commonPlaceDescriptions = {
   cavern: 'This space is fairly bigger than you think.',
   easttunnel: 'This tunnel is longer than the previous ones (it is the East tunnel)',
   shaft:
-    'There is a railroad here - obviously long since abandoned. There is a cart, and the sun can be seen in the roof in some places, but the are much too far to reach.', // This is as far as you can go.
+    'There is a railroad here - obviously long since abandoned. There is a cart, and the sun can be seen in the roof in some places, but they are much too far to reach.', // This is as far as you can go.
 };
 
 // const commonActionDescriptions = {
@@ -25,6 +27,7 @@ const commonPlaceDescriptions = {
 //   'look for key': 'You began to search. ',
 // };
 
+// Global varibles used throughout program
 export const DESCRIPTION = 'description';
 export const LOCATION = 'location';
 export const RESULT_TEXT = 'result';
@@ -46,6 +49,7 @@ export function getAllLocations(character) {
     -1,
   );
 
+  // game play
   return {
     [CAVE]: {
       [DESCRIPTION]:
@@ -59,13 +63,14 @@ export function getAllLocations(character) {
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
+        [RESULT_TEXT]: 'Great plan of action. ',
         [LOCATION]: CAVE,
         [MODES.MODE]: MODES.EXPLORING,
       },
-      'sniff the door': {
+      'sniff the door (Type <a>) ': {
         [RESULT_TEXT]: 'It smells like a big, old oak door.',
       },
-      'search for key': {
+      'search around room for key (Type <b>)': {
         // 1/100 chance finding it on first time, you SHOULD look more than once
         [RESULT_TEXT]: (() => {
           if (character.foundTheOakDoorKey) {
@@ -74,9 +79,12 @@ export function getAllLocations(character) {
           const chance = randomInt(1, 100);
           if (chance === 43) {
             character.foundTheOakDoorKey = true;
-            return 'You found the key!';
+            return "You found the key! That should have required more work...\nCongradulations anyway, you've won";
           }
-          return 'You vainly assume that a key would just be lying about. And so you search. And search. And search. And your arrogance is rightly rewarded with nothing at all.';
+          return (
+            'You vainly assume that a key would just be lying about. And so you search. And search. And search. And your arrogance is rightly rewarded with nothing at all.\nPerhaps you should explore the cave more thoroughly.\n\n' +
+            chance
+          );
         })(),
       },
       // 'pick up key': {
@@ -91,15 +99,15 @@ export function getAllLocations(character) {
       //       },
       //     }
       // : {}),
-      'find a way out': {
-        [RESULT_TEXT]: 'You should probaly start by finding the key to the door.',
+      'find a way out (Type <c>)': {
+        [RESULT_TEXT]: 'You should probaly start by finding the key to the door. ',
       },
-      'go to door': {
+      'go to door (Type <d>)': {
         [RESULT_TEXT]:
           'You notice the door has a keyhole, it is probably VERY good that you noticed this.',
       },
       scream: {
-        [RESULT_TEXT]: 'You may.' + '                                       \n\n\n' + 'Now what?',
+        [RESULT_TEXT]: 'You may.' + '                                      \n\n' + 'Now what?',
       },
     },
     [NORTHTUNNEL]: {
@@ -117,6 +125,7 @@ export function getAllLocations(character) {
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
+        [RESULT_TEXT]: 'You are now hiding behind what feels like a rock.',
         [LOCATION]: randomSelection([NORTHTUNNEL]),
         [MODES.MODE]: MODES.EXPLORING,
       },
@@ -131,6 +140,7 @@ export function getAllLocations(character) {
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
+        [RESULT_TEXT]: 'You are now hiding next to a wall.',
         [LOCATION]: randomSelection([MINE]),
         [MODES.MODE]: MODES.EXPLORING,
       },
@@ -142,6 +152,7 @@ export function getAllLocations(character) {
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
+        [RESULT_TEXT]: "Good Job, you've successfully avoided heroism! ",
         [LOCATION]: randomSelection([SOUTHTUNNEL]),
         [MODES.MODE]: MODES.EXPLORING,
       },
@@ -153,6 +164,7 @@ export function getAllLocations(character) {
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
+        [RESULT_TEXT]: "Cool...Cool...Now what's the plan? ",
         [LOCATION]: randomSelection([CAVERN]),
         [MODES.MODE]: MODES.EXPLORING,
       },
@@ -164,6 +176,7 @@ export function getAllLocations(character) {
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
+        [RESULT_TEXT]: "Oh, good, now you're hiding ",
         [LOCATION]: randomSelection([EASTTUNNEL]),
         [MODES.MODE]: MODES.EXPLORING,
       },
@@ -175,12 +188,15 @@ export function getAllLocations(character) {
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
+        [RESULT_TEXT]: 'Now no one can see you...',
         [LOCATION]: randomSelection([SHAFT]),
         [MODES.MODE]: MODES.EXPLORING,
       },
     },
   };
 }
+
+// Old Version
 
 //   return {
 //     "cave": {

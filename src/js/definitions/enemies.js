@@ -2,6 +2,7 @@ import { randomInt, randomSelection } from '../tools';
 import { CAVE, TUNNEL1 } from './locations';
 import * as bat from '../artwork/bat';
 
+// Interact between character and enemies
 export const DESCRIPTION = 'description';
 export const LOCATIONS = 'locations';
 export const HITPOINTS = 'hitpoints';
@@ -9,6 +10,7 @@ export const WIN_TEXT = 'win_text';
 export const WIN_POINTS = 'win_points';
 export const LOSE_TEXT = 'lose_text';
 
+// Possible enemies
 export const BAT = 'bat';
 export const TROLL = 'troll';
 export const DRAGON = 'dragon';

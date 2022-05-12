@@ -37,7 +37,9 @@ export async function explore(character) {
   }
 
   // Ask the user what to do
-  print('Your options are: ' + availableActions.join(', '));
+  print(
+    'You may choose what you want to do. Some of your options are: ' + availableActions.join(', '),
+  );
   const action = await prompt('What do you want to do?', availableActions);
 
   // If this action has a result text, then print it

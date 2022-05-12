@@ -6,6 +6,7 @@ import * as MODES from './definitions/modes';
 import { CHARACTER, COLOR, createCharacter, NAME } from './definitions/character';
 import { explore } from './explore';
 
+// Game setup
 async function setup() {
   clear();
   const name = await prompt('What is your name?');
@@ -83,6 +84,7 @@ async function play(character) {
   }
 }
 
+// start game
 async function game() {
   const character = await setup();
   await play(character);
