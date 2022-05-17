@@ -1,5 +1,5 @@
 import { randomInt, randomSelection } from '../tools';
-import {CAVE, NORTHTUNNEL, MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT } from './locations';
+import { CAVE, NORTHTUNNEL, MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT } from './locations';
 import * as bat from '../artwork/bat';
 
 // Interact between character and enemies
@@ -71,7 +71,7 @@ export function getAllEnemies(/* character, location, level*/) {
       [LOSE_TEXT]: "You've lost. ",
     },
     [CYCLOPS]: {
-      [DESCRIPTION]: `In the dark you can see something moving towards you. Yeah...it\'s a ${cyclops} You should run very far away. `,
+      [DESCRIPTION]: `In the dark you can see something moving towards you. Yeah...it's a ${cyclops} You should run very far away.`,
       [LOCATIONS]: [EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(50, 60),
       [HITPOINTS]: randomInt(), // weapons

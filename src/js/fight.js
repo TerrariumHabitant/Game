@@ -1,7 +1,8 @@
 import { HITPOINTS, LOSEPOINTS } from './definitions/enemies';
+import promptPkg from 'prompt';
 export function print(string) {
   console.log(string);
-};
+}
 
 export function fight(character, monster) {
   let alive = true;
