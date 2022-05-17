@@ -12,7 +12,11 @@ export const LOSE_TEXT = 'lose_text';
 
 // Possible enemies
 export const BAT = 'bat';
+export const RATHERLARGESNAKE = 'ratherlargesnake';
 export const TROLL = 'troll';
+export const ELF  = 'elf';
+export const OGRE = 'ogre';
+export const CYCLOPS = 'cyclops';
 export const DRAGON = 'dragon';
 
 // Types of Enemies: bats, trolls...

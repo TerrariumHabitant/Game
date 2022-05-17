@@ -8,7 +8,7 @@ import {
 import { HISTORY } from './definitions/character';
 import { prompt, print, clear, wait, saveCharacter } from './tools'; // randomSelection
 import * as MODES from './definitions/modes';
-import {SHORTCUT_DELIMITER} from "./definitions/actions";
+import { SHORTCUT_DELIMITER } from './definitions/actions';
 // import * as divider from './artwork/divider';
 
 export async function explore(character) {
@@ -20,7 +20,6 @@ export async function explore(character) {
   const availableActions = Object.keys(currentLocation).filter(
     (key) => !NON_ACTION_KEYS.includes(key),
   );
-
 
   // Print the description of this location
   clear();
@@ -38,9 +37,9 @@ export async function explore(character) {
     };
   }
 
-  const availableDisplayActions = availableActions.map(displayAction => {
+  const availableDisplayActions = availableActions.map((displayAction) => {
     if (displayAction.indexOf(SHORTCUT_DELIMITER) > 0) {
-      return displayAction.replace(SHORTCUT_DELIMITER, " (") + ")"
+      return displayAction.replace(SHORTCUT_DELIMITER, ' (') + ')';
     }
     return displayAction;
   });
@@ -50,15 +49,14 @@ export async function explore(character) {
     return actions;
   }, []);
 
-
   // Ask the user what to do
   print(
     'You may choose what you want to do. Some of your options are: ' + availableActions.join(', '),
   );
   const action = await prompt('What do you want to do?', availableInputActions);
 
-  const actualAction = availableActions.find(availableAction =>
-    availableAction.split(SHORTCUT_DELIMITER).indexOf(action) > -1
+  const actualAction = availableActions.find(
+    (availableAction) => availableAction.split(SHORTCUT_DELIMITER).indexOf(action) > -1,
   );
 
   // If this action has a result text, then print it
