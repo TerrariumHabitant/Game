@@ -1,11 +1,16 @@
-import { HITPOINTS, LOSEPOINTS } from "./definitions/enemies";
+import { HITPOINTS, LOSEPOINTS } from './definitions/enemies';
+export function print(string) {
+  console.log(string);
+};
 
 export function fight(character, monster) {
   let alive = true;
   let running = false;
 
   while (alive && !running) {
-    let choiceOfFight = prompt('You are in fighting mode. What would you like to do?\n You may run, or attack. ');
+    let choiceOfFight = prompt(
+      'You are in fighting mode. What would you like to do?\n You may run, or attack. ',
+    );
 
     let chanceOfSuccess = Math.floor(Math.random() * 2);
 
