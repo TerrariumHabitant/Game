@@ -47,7 +47,7 @@ export function getAllEnemies(/* character, location, level*/) {
       [LOSE_TEXT]: "You lost; that's a bit dissappointing. ",
     },
     [TROLL]: {
-      [DESCRIPTION]: `It seems as though you've met a ${troll} I imagine this will be interesting. `,
+      [DESCRIPTION]: `It seems as though you've met a ${TROLL} I imagine this will be interesting. `,
       [LOCATIONS]: [MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(20, 30),
       [HITPOINTS]: randomInt(), // weapons
@@ -55,7 +55,7 @@ export function getAllEnemies(/* character, location, level*/) {
       [LOSE_TEXT]: 'You lost. No big suprise there, huh?',
     },
     [ELF]: {
-      [DESCRIPTION]: `There appears to be an ${elf} in front of you. He seems mad about something...`, // Help the elf?
+      [DESCRIPTION]: `There appears to be an ${ELF} in front of you. He seems mad about something...`, // Help the elf?
       [LOCATIONS]: [SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(30, 40),
       [HITPOINTS]: randomInt(), // weapons?
@@ -63,7 +63,7 @@ export function getAllEnemies(/* character, location, level*/) {
       [LOSE_TEXT]: 'You lost. ',
     },
     [OGRE]: {
-      [DESCRIPTION]: `Well, now this is definitely bad. In front of you is an ${ogre}`,
+      [DESCRIPTION]: `Well, now this is definitely bad. In front of you is an ${OGRE}`,
       [LOCATIONS]: [CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(40, 50),
       [HITPOINTS]: randomInt(), // weapons
@@ -71,7 +71,7 @@ export function getAllEnemies(/* character, location, level*/) {
       [LOSE_TEXT]: "You've lost. ",
     },
     [CYCLOPS]: {
-      [DESCRIPTION]: `In the dark you can see something moving towards you. Yeah...it's a ${cyclops} You should run very far away.`,
+      [DESCRIPTION]: `In the dark you can see something moving towards you. Yeah...it's a ${CYCLOPS} You should run very far away.`,
       [LOCATIONS]: [EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(50, 60),
       [HITPOINTS]: randomInt(), // weapons
@@ -79,7 +79,7 @@ export function getAllEnemies(/* character, location, level*/) {
       [LOSE_TEXT]: "You've lost. I can't say that that does't make sense. ",
     },
     [DRAGON]: {
-      [DESCRIPTION]: `It suddenly seems very hot - likely because there is a ${dragon} And I give up; do what you want`,
+      [DESCRIPTION]: `It suddenly seems very hot - likely because there is a ${DRAGON} And I give up; do what you want`,
       [LOCATIONS]: [SHAFT],
       [LOSEPOINTS]: randomInt(60, 75),
       [HITPOINTS]: randomInt(), // weapons - certain weapon to win, as well as level?
