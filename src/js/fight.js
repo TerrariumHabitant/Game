@@ -1,5 +1,5 @@
 import { HITPOINTS, LOSEPOINTS } from './definitions/enemies';
-import promptPkg from 'prompt';
+import 'prompt';
 export function print(string) {
   console.log(string);
 }
