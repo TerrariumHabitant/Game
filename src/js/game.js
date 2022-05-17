@@ -77,7 +77,7 @@ async function play(character) {
         character = await explore(character);
         break;
       case MODES.FIGHTING:
-        // character = await fight(character);
+        //character = await fight(character;      // character = await fight(character);
         break;
     }
     saveCharacter(character);

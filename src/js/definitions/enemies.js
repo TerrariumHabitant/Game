@@ -62,7 +62,7 @@ export function getAllEnemies(/* character, location, level*/) {
       [LOSE_TEXT]: 'You lost. '
     },
     [OGRE]: {
-      [DESCRIPTION]: `Well, now this is definitly bad. In front of you is an ${ogre}`,
+      [DESCRIPTION]: `Well, now this is definitely bad. In front of you is an ${ogre}`,
       [LOCATIONS]: [CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(40, 50),
       [HITPOINTS]: randomInt(), //weapons

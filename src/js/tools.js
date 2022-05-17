@@ -77,7 +77,7 @@ export async function prompt(description, availableActions) {
 
     if (action === 'exit') {
       clear();
-      print('Goodbye 😢\nCome back to ⚔️  another day!');
+      print('Goodbye 😢\nCome back another day! ⚔️');
       process.exit();
     }
 

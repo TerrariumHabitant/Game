@@ -37,12 +37,12 @@ export async function explore(character) {
     };
   }
 
-  const availableDisplayActions = availableActions.map((displayAction) => {
-    if (displayAction.indexOf(SHORTCUT_DELIMITER) > 0) {
-      return displayAction.replace(SHORTCUT_DELIMITER, ' (') + ')';
-    }
-    return displayAction;
-  });
+  // const availableDisplayActions = availableActions.map((displayAction) => {
+  //   if (displayAction.indexOf(SHORTCUT_DELIMITER) > 0) {
+  //     return displayAction.replace(SHORTCUT_DELIMITER, ' (') + ')';
+  //   }
+  //   return displayAction;
+  // });
 
   const availableInputActions = availableActions.reduce((actions, currentAction) => {
     actions.push(...currentAction.split(SHORTCUT_DELIMITER));
