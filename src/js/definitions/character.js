@@ -38,6 +38,6 @@ export function createCharacter(name, location, character) {
 // Player is now on level 2 if they beat (the snake - who gives them 30xp as well as some armour)
 // Player is now on level 3 if they beat (a troll - 20xp and one other monster. They may also find a sword ) they level up + 10 health  
 // player is now on level 4 if they beat (an elf and at least one other monster or find the shot gun) they level up + 20 health
-// player is now on level 5 if they beat (the ogr - they may also find a double barrel shotgun) they level up + 30 health 
+// player is now on level 5 if they beat (the ogre - they may also find a double barrel shotgun) they level up + 30 health 
 // Player is now on level 6 if they beat (cyclops they gain 50 health. They may also find am bigger gun) they level up + 40 health
 // player is now on level 7 if they beat (the dragon) they find the key and win the game
