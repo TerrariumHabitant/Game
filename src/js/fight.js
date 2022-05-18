@@ -2,7 +2,8 @@ import { HITPOINTS, LOSEPOINTS } from './definitions/enemies';
 import 'prompt';
 export function print(string) {
   console.log(string);
-}
+};
+{createcharacter}; './definitely/character'; 
 
 export function fight(character, monster) {
   let alive = true;
