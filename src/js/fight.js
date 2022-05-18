@@ -1,14 +1,14 @@
 import { HITPOINTS, LOSEPOINTS, getAllEnemies } from './definitions/enemies'; // getAllEnemies has no parameters
 import { prompt } from './tools';
-//import { createCharacter } from './character';
+// import { createCharacter } from './character';
 import { BAT, RATHERLARGESNAKE, TROLL, ELF, ORGRE, CYCLOPS, DRAGON } from './fight'; // These are called in getAllEnemies
 import { createCharacter } from './definitions/character';
 export function print(string) {
   console.log(string);
 }
 
-
-export function fight(character, enemies) {       //pick when, where and which enemy appears 
+export function fight(character, enemies) {
+  // pick when, where and which enemy appears
   let alive = true;
   let running = false;
 
@@ -45,4 +45,4 @@ export function fight(character, enemies) {       //pick when, where and which e
   }
 }
 
-const enemies = getAllEnemies(createCharacter); 
+const enemies = getAllEnemies(createCharacter);
