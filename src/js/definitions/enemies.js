@@ -1,6 +1,7 @@
-//functions, global varibles, and artwork imported for this game mode
+// functions, global varibles, and artwork imported for this game mode
 import { randomInt, randomSelection } from '../tools';
 import { CAVE, NORTHTUNNEL, MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT } from './locations';
+//import {createCharacter} from './character';
 import * as bat from '../artwork/bat';
 
 // Interact between character and enemies
@@ -27,7 +28,7 @@ export const DRAGON = 'dragon';
 
 // level - items acquired, time played...
 
-export function getAllEnemies(/* character, location, level*/) {
+export function getAllEnemies(createCharacter) {          //unknown parameters
   return {
     [BAT]: {
       [DESCRIPTION]:
