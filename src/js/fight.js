@@ -1,13 +1,10 @@
-import { HITPOINTS, LOSEPOINTS, getAllEnemies } from './definitions/enemies';
+export { HITPOINTS, LOSEPOINTS, getAllEnemies } from './definitions/enemies';   //getAllEnemies has no parameters 
 import { prompt } from './tools';
-import { createCharacter } from './definitions/character';
+export { createCharacter } from './definitions/character';
+export {BAT, RATHERLARGESNAKE, TROLL, ELF, ORGRE, CYCLOPS, DRAGON} from './fight';  //These are called in getAllEnemies
 export function print(string) {
   console.log(string);
-}
-import {getAllEnemies} from './definitions/enemies';
-import {BAT, RATHERLARGESNAKE, TROLL, ELF, ORGRE, CYCLOPS, DRAGON} from './fight';
-
-
+};
 
 
 export function fight(character, monster) {

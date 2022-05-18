@@ -1,3 +1,4 @@
+//functions, global varibles, and artwork imported for this game mode
 import { randomInt, randomSelection } from '../tools';
 import { CAVE, NORTHTUNNEL, MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT } from './locations';
 import * as bat from '../artwork/bat';
