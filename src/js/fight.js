@@ -1,8 +1,14 @@
-import { HITPOINTS, LOSEPOINTS } from './definitions/enemies';
-import {prompt } from './tools'
+import { HITPOINTS, LOSEPOINTS, getAllEnemies } from './definitions/enemies';
+import { prompt } from './tools';
+import { createCharacter } from './definitions/character';
 export function print(string) {
   console.log(string);
-};
+}
+import {getAllEnemies} from './definitions/enemies';
+import {BAT, RATHERLARGESNAKE, TROLL, ELF, ORGRE, CYCLOPS, DRAGON} from './fight';
+
+
+
 
 export function fight(character, monster) {
   let alive = true;
