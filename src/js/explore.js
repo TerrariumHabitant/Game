@@ -37,6 +37,7 @@ export async function explore(character) {
     };
   }
 
+  //This code is not working 
   // const availableDisplayActions = availableActions.map((displayAction) => {
   //   if (displayAction.indexOf(SHORTCUT_DELIMITER) > 0) {
   //     return displayAction.replace(SHORTCUT_DELIMITER, ' (') + ')';

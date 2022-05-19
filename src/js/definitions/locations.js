@@ -4,6 +4,7 @@ import * as ACTIONS from './actions';
 import * as MODES from './modes';
 import { HISTORY } from './character';
 import * as cave from '../artwork/cave';
+import { getAllEnemies } from './enemies';
 
 // Description of Commmon Places within the game map
 const commonPlaceDescriptions = {
@@ -67,6 +68,15 @@ export function getAllLocations(character) {
         [LOCATION]: CAVE,
         [MODES.MODE]: MODES.EXPLORING,
       },
+      enemyExistsHere === True ? 
+        [RESULT_TEXT]: getAllEnemies        //pass in enemy text?? 
+        [MODES.MODE]: MODES.FIGHTING  
+        : alert('You seem safe')
+      },
+
+
+
+      
       'sniff the door (Type <a>) ': {
         [RESULT_TEXT]: 'It smells like a big, old oak door.',
       },
