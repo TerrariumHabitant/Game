@@ -19,23 +19,25 @@ export const playPoints = 0;
 export const level = 1; 
 
 export function level (playPoints, level) {
-  if(playerPoints == 1)
+  if(playerPoints == 1) {
+    level + 1;
+  } else if(playerPoints >= 30 && level == 1) {
+    level + 1;
+  } else if(playerPoints >= 20 && level == 2) {  
     level + 1
-  elif(playerPoints == 30 && level == 1)
+  } else if(playerPoints >= 40 && level == 3) {  
     level + 1
-  elif(playerPoints == 20 && level == 2)    //snake equal or greater
+  } else if(playerPoints >= 50 && level == 4) {  
     level + 1
-  elif(playerPoints == 40 && level == 3)    //equal or greater
+  } else if(playerPoints >= 70 && level == 5) {    
     level + 1
-  elif(playerPoints == 50 && level == 4)    //equal or greater
+  } else if(playerPoints >= 90 && level == 6) {    
     level + 1
-  elif(playerPoints == 70 && level == 5)    //equal or greater
-    level + 1
-  elif(playerPoints == 90 && level == 6)    //equal or greater
-    level + 1
-  elif(playPoints == 100 && level == 7)     //level 8, final 
-    level + 1  //find key 
-}
+  } else if(playPoints >= 100 && level == 7) {
+    //level 8, final 
+    level + 1  //find key  
+  }     
+};
 
 // Create Character
 export function createCharacter(name, location, character, level) {
