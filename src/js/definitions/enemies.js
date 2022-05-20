@@ -14,13 +14,41 @@ export const WIN_TEXT = 'win_text';
 export const LOSE_TEXT = 'lose_text';
 
 // Possible enemies
-export const BAT = {'bat', [COLOR]: colors.grey };                       
-export const RATHERLARGESNAKE = {'ratherlargesnake', [COLOR]: color.red };
-export const TROLL = {'troll', [COLOR]: color.darkgreen};
-export const ELF = {'elf', [COLOR]: color.cyan};
-export const OGRE = {'ogre', [COLOR]: color.green};
-export const CYCLOPS = { 'cyclops', [COLOR]: color.white };
-export const DRAGON = {'dragon', [COLOR]: color.yellow};
+export const BAT = {                                    //where do I define XP Points?
+  [NAME]: 'bat', 
+  [COLOR]: colors.grey,
+  [XPPOINTS]: 10 
+};                                 
+export const RATHERLARGESNAKE = {
+ [NAME]: 'ratherlargesnake',
+ [COLOR]: color.red, 
+ [XPPOINTS]: 20 
+};
+export const TROLL = { 
+  [NAME]: 'troll', 
+  [COLOR]: color.darkgreen, 
+  [XPPOINTS]: 30
+};
+export const ELF = { 
+  [NAME]: 'elf', 
+  [COLOR]: color.cyan, 
+  [XPPOINTS]: 40
+};
+export const OGRE = {
+  [NAME]: 'ogre', 
+  [COLOR]: color.green, 
+  [XPPOINTS]: 50
+};
+export const CYCLOPS = { 
+  [NAME]: 'cyclops', 
+  [COLOR]: color.white, 
+  [XPPOINTS]: 60 
+};
+export const DRAGON = { 
+  [NAME]: 'dragon', 
+  [COLOR]: color.yellow, 
+  [XPPOINTS]: 100
+};
 
 // Types of Enemies: bats, trolls...
 // Function(location, character)
@@ -37,6 +65,8 @@ export function getAllEnemies(LOCATIONS) {
       [HITPOINTS]: randomInt(5, 10), // weapons
       [WIN_TEXT]: `You beat that ${BAT}. Yay?\n\n ... but you gained some experience. So there's that, I guess.`,
       [LOSE_TEXT]: `You were defeated by a ${BAT}. You should probably dwell on that for a while.`,
+      [XPPOINTS]: `You have won ${XPPOINTS} Cool. `,
+      [ENEMYHEALTH]: 5
     },
     [RATHERLARGESNAKE]: {
       [DESCRIPTION]: 'You see a snake. Not a normal snake though; this is a rather large snake and it should probably raise some concern. ',
@@ -45,6 +75,8 @@ export function getAllEnemies(LOCATIONS) {
       [HITPOINTS]: randomInt(10, 15), // weapons
       [WIN_TEXT]: 'You won. That makes sense, it was only a snake. ',
       [LOSE_TEXT]: "You lost; that's a bit dissappointing. ",
+      [XPPOINTS]: `You have won ${XPPOINTS} Cool. `,
+      [ENEMYHEALTH]: 10
     },
     [TROLL]: {
       [DESCRIPTION]: `It seems as though you've met a ${TROLL} I imagine this will be interesting. `,
@@ -53,6 +85,8 @@ export function getAllEnemies(LOCATIONS) {
       [HITPOINTS]: randomInt(10, 20), // weapons
       [WIN_TEXT]: 'You won, good job I guess. ',
       [LOSE_TEXT]: 'You lost. No big suprise there, huh?',
+      [XPPOINTS]: `You have won ${XPPOINTS} Cool. `,
+      [ENEMYHEALTH]: 20
     },
     [ELF]: {
       [DESCRIPTION]: `There appears to be an ${ELF} in front of you. He seems mad about something...`, // Help the elf?
@@ -61,6 +95,8 @@ export function getAllEnemies(LOCATIONS) {
       [HITPOINTS]: randomInt(20, 30), // weapons?
       [WIN_TEXT]: 'Actually, that was very well done. ',
       [LOSE_TEXT]: 'You lost. ',
+      [XPPOINTS]: `You have won ${XPPOINTS} Cool. `,
+      [ENEMYHEALTH]: 40
     },
     [OGRE]: {
       [DESCRIPTION]: `Well, now this is definitely bad. In front of you is an ${OGRE}`,
@@ -69,6 +105,8 @@ export function getAllEnemies(LOCATIONS) {
       [HITPOINTS]: randomInt(30, 40), // weapons
       [WIN_TEXT]: 'You win! ',
       [LOSE_TEXT]: "You've lost. ",
+      [XPPOINTS]: `You have won ${XPPOINTS} Cool. `,
+      [ENEMYHEALTH]: 50
     },
     [CYCLOPS]: {
       [DESCRIPTION]: `In the dark you can see something moving towards you. Yeah...it's a ${CYCLOPS} You should run very far away.`,
@@ -77,6 +115,8 @@ export function getAllEnemies(LOCATIONS) {
       [HITPOINTS]: randomInt(40, 50), // weapons
       [WIN_TEXT]: 'Wow, yeah...I did not see that coming. ',
       [LOSE_TEXT]: "You've lost. I can't say that that does't make sense. ",
+      [XPPOINTS]: `You have won ${XPPOINTS} Cool. `,
+      [ENEMYHEALTH]: 60
     },
     [DRAGON]: {
       [DESCRIPTION]: `It suddenly seems very hot - likely because there is a ${DRAGON} And I give up; do what you want`,
@@ -85,6 +125,8 @@ export function getAllEnemies(LOCATIONS) {
       [HITPOINTS]: randomInt(50, 60), // weapons - certain weapon to win, as well as level?
       [WIN_TEXT]: 'Okay, you got me. I was NOT expecting that. ',
       [LOSE_TEXT]: 'Hehehe...You lost!',
+      [XPPOINTS]: `You have won ${XPPOINTS} Cool. `, 
+      [ENEMYHEALTH]: 70
     },
   };
 }
