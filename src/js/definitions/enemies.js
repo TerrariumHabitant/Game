@@ -1,8 +1,9 @@
 // functions, global varibles, and artwork imported for this game mode
 import { randomInt, randomSelection } from '../tools';
 import { CAVE, NORTHTUNNEL, MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT } from './locations';
-// import {createCharacter} from './character';
+import {createCharacter} from './definitions/character';
 import * as bat from '../artwork/bat';
+import { COLOR } from './character';
 
 // Interact between character and enemies
 export const DESCRIPTION = 'description';
@@ -13,27 +14,24 @@ export const WIN_TEXT = 'win_text';
 export const LOSE_TEXT = 'lose_text';
 
 // Possible enemies
-export const BAT = 'bat';
-export const RATHERLARGESNAKE = 'ratherlargesnake';
-export const TROLL = 'troll';
-export const ELF = 'elf';
-export const OGRE = 'ogre';
-export const CYCLOPS = 'cyclops';
-export const DRAGON = 'dragon';
+export const BAT = {'bat', [COLOR]: colors.grey };                       
+export const RATHERLARGESNAKE = {'ratherlargesnake', [COLOR]: color.red };
+export const TROLL = {'troll', [COLOR]: color.darkgreen};
+export const ELF = {'elf', [COLOR]: color.cyan};
+export const OGRE = {'ogre', [COLOR]: color.green};
+export const CYCLOPS = { 'cyclops', [COLOR]: color.white };
+export const DRAGON = {'dragon', [COLOR]: color.yellow};
 
 // Types of Enemies: bats, trolls...
 // Function(location, character)
 // Enemies points
 // Key points
 
-// level - items acquired, time played...
-
-export function getAllEnemies(createCharacter) {
+export function getAllEnemies(LOCATIONS) {
   // unknown parameters
   return {
     [BAT]: {
-      [DESCRIPTION]:
-        `Oh no! It's a ${BAT}!` + ' It looks something like this:' + randomSelection(bat.artwork),
+      [DESCRIPTION]: `Oh no! It's a ${BAT}!` + ' It looks something like this:' + randomSelection(bat.artwork),
       [LOCATIONS]: [CAVE, NORTHTUNNEL, MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(5, 15),
       [HITPOINTS]: randomInt(5, 10), // weapons
@@ -41,8 +39,7 @@ export function getAllEnemies(createCharacter) {
       [LOSE_TEXT]: `You were defeated by a ${BAT}. You should probably dwell on that for a while.`,
     },
     [RATHERLARGESNAKE]: {
-      [DESCRIPTION]:
-        'You see a snake. Not a normal snake though; this is a rather large snake and it should probably raise some concern. ',
+      [DESCRIPTION]: 'You see a snake. Not a normal snake though; this is a rather large snake and it should probably raise some concern. ',
       [LOCATIONS]: [NORTHTUNNEL, MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(10, 15),
       [HITPOINTS]: randomInt(10, 15), // weapons

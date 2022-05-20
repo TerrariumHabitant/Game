@@ -206,6 +206,15 @@ export function getAllLocations(character) {
   };
 }
 
+
+
+
+
+
+
+
+
+
 // Old Version
 
 //   return {

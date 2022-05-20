@@ -15,26 +15,27 @@ export const PURPLE = { [NAME]: 'PurpleGuy', [COLOR]: colors.magenta };
 
 export const HISTORY = 'history';
 
+//define character level
 export const playPoints = 0;
-export const level = 1; 
+export const level = 0; 
 
-export function level (playPoints, level) {
-  if(playerPoints == 1) {
+// level - items acquired, time played, points...
+export function userLevel (playPoints, level) {
+  if(playerPoints == 0) {
     level + 1;
-  } else if(playerPoints >= 30 && level == 1) {
+  } else if(playerPoints >= 30 && level == 1) {       //bat
     level + 1;
-  } else if(playerPoints >= 20 && level == 2) {  
+  } else if(playerPoints >= 20 && level == 2) {       //snake
     level + 1
-  } else if(playerPoints >= 40 && level == 3) {  
+  } else if(playerPoints >= 40 && level == 3) {       //troll
     level + 1
-  } else if(playerPoints >= 50 && level == 4) {  
+  } else if(playerPoints >= 50 && level == 4) {       //elf
     level + 1
-  } else if(playerPoints >= 70 && level == 5) {    
+  } else if(playerPoints >= 70 && level == 5) {       //ogre
     level + 1
-  } else if(playerPoints >= 90 && level == 6) {    
+  } else if(playerPoints >= 90 && level == 6) {       //cyclops
     level + 1
-  } else if(playPoints >= 100 && level == 7) {
-    //level 8, final 
+  } else if(playPoints >= 100 && level == 7) {         //level 8, final: dragon  
     level + 1  //find key  
   }     
 };
@@ -51,9 +52,13 @@ export function createCharacter(name, location, character, level) {
     points: 0,
     equipped: [],
     stashed: [],
+    level: level, 
     [LOCATIONS.LOCATION + HISTORY]: [],
   };
-}
+};
+
+
+
 
 // level, equipped, and stashed
 //To level up they must bet the enemy of that level, and occational one other enemy 
