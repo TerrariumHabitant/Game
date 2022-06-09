@@ -1,24 +1,32 @@
 import { DESCRIPTION, getAllEnemies } from './definitions/enemies';
-import { prompt, randomSelection } from './tools';
+import { prompt, randomSelection, print } from './tools';
 import * as MODES from './definitions/modes';
 import { LOCATION, LOCATIONS } from './definitions/locations';
-import { MIN_LEVEL, LEVEL } from './definitions/enemies';
-export function print(string) {
-  console.log(string);
-}
+import { getUserLevel } from './definitions/character';
+import { MIN_LEVEL } from './definitions/enemies';
 
 // pick when, where and which enemy appears - WEAPONS AND XP
 export async function fight(character) {
   const enemies = getAllEnemies();
   const pertinentEnemyKeys = Object.keys(enemies).filter((enemyKey) => {
+    print('LOOP');
+    print(JSON.stringify(enemies[enemyKey][LOCATIONS]));
+    print(JSON.stringify(character[LOCATION]));
+    print(JSON.stringify(enemies[enemyKey][MIN_LEVEL]));
+    print(JSON.stringify(character.points));
+    print(JSON.stringify(getUserLevel(character.points)));
+
     if (
       enemies[enemyKey][LOCATIONS].includes(character[LOCATION]) &&
-      enemies[enemyKey][MIN_LEVEL] <= character[LEVEL]
+      enemies[enemyKey][MIN_LEVEL] <= getUserLevel(character.points)
     ) {
       return true;
     }
     return false;
   });
+
+  print('THIS IS THE LIST OF PERTINENT ENEMIES BASED ON MY LEVEL AND LOCATION');
+  print(JSON.stringify(pertinentEnemyKeys));
 
   // Specific enemy
   const currentEnemyKey = randomSelection(pertinentEnemyKeys);

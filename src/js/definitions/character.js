@@ -16,35 +16,34 @@ export const PURPLE = { [NAME]: 'PurpleGuy', [COLOR]: colors.magenta };
 export const HISTORY = 'history';
 
 // level - items acquired, time played, points...
-export function userLevel(playerPoints, level) {
-  if (playerPoints === 0) {
-    level + 1;
-  } else if (playerPoints >= 30 && level === 1) {
-    // bat
-    level + 1;
-  } else if (playerPoints >= 20 && level === 2) {
+export function getUserLevel(playerPoints) {
+  if (playerPoints < 30) {
+    return 1;
+  } else if (playerPoints >= 30 && playerPoints < 40) {
+    return 2;
+  } else if (playerPoints >= 40 && playerPoints < 50) {
     // snake
-    level + 1;
-  } else if (playerPoints >= 40 && level === 3) {
+    return 3;
+  } else if (playerPoints >= 50 && playerPoints < 60) {
     // troll
-    level + 1;
-  } else if (playerPoints >= 50 && level === 4) {
+    return 4;
+  } else if (playerPoints >= 60 && playerPoints < 70) {
     // elf
-    level + 1;
-  } else if (playerPoints >= 70 && level === 5) {
+    return 5;
+  } else if (playerPoints >= 70 && playerPoints < 80) {
     // ogre
-    level + 1;
-  } else if (playerPoints >= 90 && level === 6) {
+    return 6;
+  } else if (playerPoints >= 80 && playerPoints < 90) {
     // cyclops
-    level + 1;
-  } else if (playerPoints >= 100 && level === 7) {
-    // level 8, final: dragon
-    level + 1; // find key
+    return 7;
+  } else if (playerPoints >= 90) {
+    // level 8, final: dragon, find key
+    return 8;
   }
 }
 
 // Create Character
-export function createCharacter(name, location, character, level) {
+export function createCharacter(name, location, character) {
   return {
     name,
     [LOCATION]: location,
@@ -55,7 +54,6 @@ export function createCharacter(name, location, character, level) {
     points: 0,
     equipped: [],
     stashed: [],
-    level: level,
     [LOCATION + HISTORY]: [],
   };
 }

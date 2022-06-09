@@ -33,7 +33,7 @@ export const MIN_LEVEL = 'min_level';
 // Types of Enemies
 export const BAT = 'Bat'.grey;
 export const RATHERLARGESNAKE = 'Rather large snake'.red;
-export const TROLL = 'Troll'.darkgreen;
+export const TROLL = 'Troll'.bgGreen;
 export const ELF = 'Elf'.cyan;
 export const OGRE = 'Ogre'.green;
 export const CYCLOPS = 'Cyclops'.white;
@@ -72,9 +72,7 @@ export function getAllEnemies() {
       [MIN_LEVEL]: 2,
     },
     [TROLL]: {
-      [DESCRIPTION]: `It seems as though you've met a Troll.It looks something like this: ${randomSelection(
-        troll.artwork,
-      )}`,
+      [DESCRIPTION]: `It seems as though you've met a Troll.It looks something like this: ${troll.artwork[0]}`,
       [LOCATIONS]: [MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(20, 30),
       [HITPOINTS]: randomInt(10, 20), // weapons
@@ -100,9 +98,7 @@ export function getAllEnemies() {
       [MIN_LEVEL]: 4,
     },
     [OGRE]: {
-      [DESCRIPTION]: `Well, now this is definitely bad. In front of you is an Ogre - it looks something like this: ${randomSelection(
-        ogre.artwork,
-      )}`,
+      [DESCRIPTION]: `Well, now this is definitely bad. In front of you is an Ogre - it looks something like this: ${ogre.artwork[0]}`,
       [LOCATIONS]: [CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(40, 50),
       [HITPOINTS]: randomInt(30, 40), // weapons
@@ -114,9 +110,7 @@ export function getAllEnemies() {
       [MIN_LEVEL]: 5,
     },
     [CYCLOPS]: {
-      [DESCRIPTION]: `In the dark you can see something moving towards you...it's a Cyclops You should run very far away. Also, It looks something like this: ${randomSelection(
-        cyclops.artwork,
-      )} `,
+      [DESCRIPTION]: `In the dark you can see something moving towards you...it's a Cyclops You should run very far away. Also, It looks something like this: ${cyclops.artwork[0]} `,
       [LOCATIONS]: [EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(50, 60),
       [HITPOINTS]: randomInt(40, 50), // weapons
