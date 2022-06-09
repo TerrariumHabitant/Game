@@ -59,7 +59,7 @@ export function getAllEnemies() {
       [HITPOINTS]: randomInt(10, 15), // weapons
       [WIN_TEXT]: 'You won. That makes sense, it was only a snake. ',
       [LOSE_TEXT]: "You lost; that's a bit dissappointing. ",
-      [XPPOINTS]: `You have won 20 points Cool. `,
+      [XPPOINTS_TEXT]: `You have won 20 points Cool. `,
       [ENEMYHEALTH]: 10,
       [XPPOINTS]: 20,
       [MIN_LEVEL]: 2,
@@ -71,7 +71,7 @@ export function getAllEnemies() {
       [HITPOINTS]: randomInt(10, 20), // weapons
       [WIN_TEXT]: 'You won, good job I guess. ',
       [LOSE_TEXT]: 'You lost. No big suprise there, huh?',
-      [XPPOINTS]: `You have won 30 points Cool. `,
+      [XPPOINTS_TEXT]: `You have won 30 points Cool. `,
       [ENEMYHEALTH]: 20,
       [XPPOINTS]: 30,
       [MIN_LEVEL]: 3,
@@ -83,7 +83,7 @@ export function getAllEnemies() {
       [HITPOINTS]: randomInt(20, 30), // weapons
       [WIN_TEXT]: 'Actually, that was very well done. ',
       [LOSE_TEXT]: 'You lost. ',
-      [XPPOINTS]: `You have won 40 points Cool. `,
+      [XPPOINTS_TEXT]: `You have won 40 points Cool. `,
       [ENEMYHEALTH]: 40,
       [XPPOINTS]: 40,
       [MIN_LEVEL]: 4,
@@ -95,7 +95,7 @@ export function getAllEnemies() {
       [HITPOINTS]: randomInt(30, 40), // weapons
       [WIN_TEXT]: 'You win! ',
       [LOSE_TEXT]: "You've lost. ",
-      [XPPOINTS]: `You have won 50 points, good job. `,
+      [XPPOINTS_TEXT]: `You have won 50 points, good job. `,
       [ENEMYHEALTH]: 50,
       [XPPOINTS]: 50,
       [MIN_LEVEL]: 5,
@@ -107,7 +107,7 @@ export function getAllEnemies() {
       [HITPOINTS]: randomInt(40, 50), // weapons
       [WIN_TEXT]: 'Wow, yeah...I did not see that coming. ',
       [LOSE_TEXT]: "You've lost. I can't say that that does't make sense. ",
-      [XPPOINTS]: `You have won 60 points Cool. `,
+      [XPPOINTS_TEXT]: `You have won 60 points Cool. `,
       [ENEMYHEALTH]: 60,
       [XPPOINTS]: 60,
       [MIN_LEVEL]: 6,
@@ -119,7 +119,7 @@ export function getAllEnemies() {
       [HITPOINTS]: randomInt(50, 60), // weapons - certain weapon to win?
       [WIN_TEXT]: 'Okay, you got me. I was NOT expecting that. ',
       [LOSE_TEXT]: 'Hehehe...You lost!',
-      [XPPOINTS]: `You have won 100 points. Good job. `,
+      [XPPOINTS_TEXT]: `You have won 100 points. Good job. `,
       [ENEMYHEALTH]: 70,
       [XPPOINTS]: 100,
       [MIN_LEVEL]: 7,
