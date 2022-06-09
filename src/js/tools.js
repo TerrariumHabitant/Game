@@ -1,5 +1,6 @@
 import promptPkg from 'prompt';
 import fs from 'fs';
+import FuzzyMatching from "fuzzy-matching";
 
 export function print(string) {
   console.log(string);
@@ -54,11 +55,18 @@ export async function load() {
   }
 }
 
+export function fuzzyMatch(input, answers, leniency = 0.5) {
+  const fm = new FuzzyMatching(Array.isArray(answers) ? answers : [answers]);
+  return fm.get(input, { min: leniency });
+}
+
 export async function prompt(description, availableActions) {
   const RESULT = 'result';
   let needsHelp = true;
   let repeatInput = false;
   let action = '';
+
+  availableActions = availableActions && (Array.isArray(availableActions) ? availableActions : [availableActions]);
 
   while (needsHelp || repeatInput) {
     needsHelp = false;
@@ -74,6 +82,8 @@ export async function prompt(description, availableActions) {
     };
     action = await promptPkg.get(schema);
     action = action[RESULT];
+
+    action = fuzzyMatch(action, [...availableActions || [], 'help', 'save', 'exit']).value || action;
 
     if (action === 'exit') {
       clear();
