@@ -11,6 +11,12 @@ import {
   SHAFT,
 } from './locations';
 import * as bat from '../artwork/bat';
+import * as ratherLargeSnake from '../artwork/ratherLargeSnake';
+import * as troll from '../artwork/troll';
+import * as elf from '../artwork/elf';
+import * as ogre from '../artwork/ogre';
+import * as cyclops from '../artwork/cyclops';
+import * as dragon from '../artwork/dragon';
 
 // Interact between character and enemies
 export const COLOR = 'color';
@@ -52,8 +58,9 @@ export function getAllEnemies() {
       [MIN_LEVEL]: 1,
     },
     [RATHERLARGESNAKE]: {
-      [DESCRIPTION]:
-        'You see a snake. Not a normal snake though; this is a rather large snake and it should probably raise some concern. ',
+      [DESCRIPTION]: `You see a snake. Not a normal snake though; this is a rather large snake and it should probably raise some concern. It looks something like this: ${randomSelection(
+        ratherLargeSnake.artwork,
+      )}`,
       [LOCATIONS]: [NORTHTUNNEL, MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(10, 15),
       [HITPOINTS]: randomInt(10, 15), // weapons
@@ -65,7 +72,9 @@ export function getAllEnemies() {
       [MIN_LEVEL]: 2,
     },
     [TROLL]: {
-      [DESCRIPTION]: `It seems as though you've met a Troll I imagine this will be interesting. `,
+      [DESCRIPTION]: `It seems as though you've met a Troll.It looks something like this: ${randomSelection(
+        troll.artwork,
+      )}`,
       [LOCATIONS]: [MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(20, 30),
       [HITPOINTS]: randomInt(10, 20), // weapons
@@ -77,7 +86,9 @@ export function getAllEnemies() {
       [MIN_LEVEL]: 3,
     },
     [ELF]: {
-      [DESCRIPTION]: `There appears to be an Elf in front of you. He seems mad about something...`, // Help the elf?
+      [DESCRIPTION]: `There appears to be an Elf in front of you. He seems mad about something...It looks something like this: ${randomSelection(
+        elf.artwork,
+      )}`, // Help the elf?
       [LOCATIONS]: [SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(30, 40),
       [HITPOINTS]: randomInt(20, 30), // weapons
@@ -89,7 +100,9 @@ export function getAllEnemies() {
       [MIN_LEVEL]: 4,
     },
     [OGRE]: {
-      [DESCRIPTION]: `Well, now this is definitely bad. In front of you is an Ogre`,
+      [DESCRIPTION]: `Well, now this is definitely bad. In front of you is an Ogre - it looks something like this: ${randomSelection(
+        ogre.artwork,
+      )}`,
       [LOCATIONS]: [CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(40, 50),
       [HITPOINTS]: randomInt(30, 40), // weapons
@@ -101,7 +114,9 @@ export function getAllEnemies() {
       [MIN_LEVEL]: 5,
     },
     [CYCLOPS]: {
-      [DESCRIPTION]: `In the dark you can see something moving towards you. Yeah...it's a Cyclops You should run very far away.`,
+      [DESCRIPTION]: `In the dark you can see something moving towards you...it's a Cyclops You should run very far away. Also, It looks something like this: ${randomSelection(
+        cyclops.artwork,
+      )} `,
       [LOCATIONS]: [EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(50, 60),
       [HITPOINTS]: randomInt(40, 50), // weapons
@@ -113,7 +128,9 @@ export function getAllEnemies() {
       [MIN_LEVEL]: 6,
     },
     [DRAGON]: {
-      [DESCRIPTION]: `It suddenly seems very hot - likely because there is a Dragon. I give up; do what you want`,
+      [DESCRIPTION]: `It suddenly seems very hot - likely because there is a Dragon. I give up; do what you want. It looks something like this: ${randomSelection(
+        dragon.artwork,
+      )}`,
       [LOCATIONS]: [SHAFT],
       [LOSEPOINTS]: randomInt(60, 75),
       [HITPOINTS]: randomInt(50, 60), // weapons - certain weapon to win?
