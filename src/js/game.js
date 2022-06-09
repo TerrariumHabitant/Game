@@ -5,6 +5,7 @@ import * as LOCATIONS from './definitions/locations';
 import * as MODES from './definitions/modes';
 import { CHARACTER, COLOR, createCharacter, NAME } from './definitions/character';
 import { explore } from './explore';
+import { fight } from './fight';
 
 // Game setup
 async function setup() {
@@ -77,7 +78,7 @@ async function play(character) {
         character = await explore(character);
         break;
       case MODES.FIGHTING:
-        // character = await fight(character;      // character = await fight(character);
+        character = await fight(character);
         break;
     }
     saveCharacter(character);

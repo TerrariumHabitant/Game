@@ -1,6 +1,6 @@
 // Global varibles and imports from other files of the code
 import * as MODES from './modes';
-import * as LOCATIONS from './locations';
+import { LOCATION } from './locations';
 import colors from 'colors';
 
 export const NAME = 'name';
@@ -15,33 +15,29 @@ export const PURPLE = { [NAME]: 'PurpleGuy', [COLOR]: colors.magenta };
 
 export const HISTORY = 'history';
 
-// define character level
-export const playPoints = 0;
-export const level = 0;
-
 // level - items acquired, time played, points...
-export function userLevel(playPoints, level) {
-  if (playerPoints == 0) {
+export function userLevel(playerPoints, level) {
+  if (playerPoints === 0) {
     level + 1;
-  } else if (playerPoints >= 30 && level == 1) {
+  } else if (playerPoints >= 30 && level === 1) {
     // bat
     level + 1;
-  } else if (playerPoints >= 20 && level == 2) {
+  } else if (playerPoints >= 20 && level === 2) {
     // snake
     level + 1;
-  } else if (playerPoints >= 40 && level == 3) {
+  } else if (playerPoints >= 40 && level === 3) {
     // troll
     level + 1;
-  } else if (playerPoints >= 50 && level == 4) {
+  } else if (playerPoints >= 50 && level === 4) {
     // elf
     level + 1;
-  } else if (playerPoints >= 70 && level == 5) {
+  } else if (playerPoints >= 70 && level === 5) {
     // ogre
     level + 1;
-  } else if (playerPoints >= 90 && level == 6) {
+  } else if (playerPoints >= 90 && level === 6) {
     // cyclops
     level + 1;
-  } else if (playPoints >= 100 && level == 7) {
+  } else if (playerPoints >= 100 && level === 7) {
     // level 8, final: dragon
     level + 1; // find key
   }
@@ -51,7 +47,7 @@ export function userLevel(playPoints, level) {
 export function createCharacter(name, location, character, level) {
   return {
     name,
-    [LOCATIONS.LOCATION]: location,
+    [LOCATION]: location,
     [MODES.MODE]: MODES.EXPLORING,
     [CHARACTER]: character,
     health: 90,
@@ -60,13 +56,13 @@ export function createCharacter(name, location, character, level) {
     equipped: [],
     stashed: [],
     level: level,
-    [LOCATIONS.LOCATION + HISTORY]: [],
+    [LOCATION + HISTORY]: [],
   };
 }
 
 // level, equipped, and stashed
-// To level up they must bet the enemy of that level, and occational one other enemy
 
+// how level works...
 // Player defaults level 1, if they beat (two bats - 10xp - and find a pointy stick - 10xp) they level up to two + 5health.
 // Player is now on level 2 if they beat (the snake - who gives them 20xp as well as some armour)
 // Player is now on level 3 if they beat (a troll - 30xp and one other monster. They may also find a sword ) they level up + 10 health

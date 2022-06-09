@@ -4,7 +4,6 @@ import * as ACTIONS from './actions';
 import * as MODES from './modes';
 import { HISTORY } from './character';
 import * as cave from '../artwork/cave';
-import { getAllEnemies } from './enemies';
 
 // Description of Commmon Places within the game map
 const commonPlaceDescriptions = {
@@ -31,6 +30,7 @@ const commonPlaceDescriptions = {
 // Global varibles used throughout program
 export const DESCRIPTION = 'description';
 export const LOCATION = 'location';
+export const LOCATIONS = 'locations';
 export const RESULT_TEXT = 'result';
 
 export const CAVE = 'cave';
@@ -68,15 +68,6 @@ export function getAllLocations(character) {
         [LOCATION]: CAVE,
         [MODES.MODE]: MODES.EXPLORING,
       },
-      enemyExistsHere === True ? 
-        [RESULT_TEXT]: getAllEnemies        //pass in enemy text?? 
-        [MODES.MODE]: MODES.FIGHTING  
-        : alert('You seem safe')
-      },
-
-
-
-      
       'sniff the door (Type <a>) ': {
         [RESULT_TEXT]: 'It smells like a big, old oak door.',
       },
@@ -162,7 +153,7 @@ export function getAllLocations(character) {
         [MODES.MODE]: MODES.EXPLORING,
       },
       [ACTIONS.HIDE]: {
-        [RESULT_TEXT]: "Good Job, you've successfully avoided heroism! ",
+        [RESULT_TEXT]: "Good job, you've successfully avoided any chance of heroism! ",
         [LOCATION]: randomSelection([SOUTHTUNNEL]),
         [MODES.MODE]: MODES.EXPLORING,
       },
@@ -205,15 +196,6 @@ export function getAllLocations(character) {
     },
   };
 }
-
-
-
-
-
-
-
-
-
 
 // Old Version
 
