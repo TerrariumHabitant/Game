@@ -1,3 +1,4 @@
+// Imports from other files used in explore code
 import {
   DESCRIPTION,
   LOCATION,
@@ -6,16 +7,21 @@ import {
   RESULT_TEXT,
 } from './definitions/locations';
 import { HISTORY } from './definitions/character';
-import { prompt, print, clear, wait, saveCharacter } from './tools'; // randomSelection
+import { prompt, print, clear, wait, saveCharacter, randomInt } from './tools';
 import * as MODES from './definitions/modes';
 import { SHORTCUT_DELIMITER } from './definitions/actions';
+
+// Not Currently being used
+// import { random } from 'colors';
 // import * as divider from './artwork/divider';
 
+// save character
 export async function explore(character) {
   // Record that we were here
   character[LOCATION + HISTORY].push(character[LOCATION]);
   saveCharacter(character);
 
+  // if enemy and character location are equal, emeny can exist
   const { [character[LOCATION]]: currentLocation } = getAllLocations(character);
   const availableActions = Object.keys(currentLocation).filter(
     (key) => !NON_ACTION_KEYS.includes(key),
@@ -27,10 +33,10 @@ export async function explore(character) {
   print(currentLocation[DESCRIPTION]);
   print('');
 
-  // TODO: Determine if there's an enemy at this location. If so, switch the mode to fighting!
-  // Enemy? location, level(number of enemies defeated)
-  const enemyExistsHere = false;
-  if (enemyExistsHere) {
+  // Test location for emeny
+  const enemyExistsHere = randomInt(1, 3);
+  print('two = enemy:  ' + enemyExistsHere);
+  if (enemyExistsHere === 2) {
     return {
       ...character,
       [MODES.MODE]: MODES.FIGHTING,

@@ -12,7 +12,7 @@ export async function fight(character) {
   const enemies = getAllEnemies();
   const pertinentEnemies = Object.keys(enemies).reduce((enemiesReduction, enemyKey) => {
     if (
-      enemies[enemyKey][LOCATIONS].contains(character[LOCATION]) &&
+      enemies[enemyKey][LOCATIONS].includes(character[LOCATION]) &&
       enemies[enemyKey][MIN_LEVEL] <= character[LEVEL]
     ) {
       enemiesReduction[enemyKey] = enemies[enemyKey];
@@ -28,7 +28,7 @@ export async function fight(character) {
 
   // battle code
   while (alive && !running) {
-    let choiceOFight = prompt(
+    let choiceOFight = await prompt(
       'You are in fighting mode. What would you like to do?\n You may run, or attack. ',
     );
 
@@ -54,16 +54,16 @@ export async function fight(character) {
       print('They missed. Lucky you.');
     }
 
-    //   if (choiceOfFight === 'run') {
-    //     running = true;
-    //     [MODES.MODE]: MODES.EXPLORING                      //EMENY HEALTH, IF BATTLE IS WON
-    //   } else if(enemyHealth <= 0) {
-    //     [MODES.MODE]: MODES.EXPLORING
-    //     alert('You have won ')//xp
-    //   } else if (health <= 0) {
-    //     print('You died. \n\n--------- Game Over ---------');
-    //     alive = false; // End Game
-    //   }
+      // if (choiceOfFight === 'run') {
+      //   running = true;
+      //   [MODES.MODE]: MODES.EXPLORING                      //EMENY HEALTH, IF BATTLE IS WON
+      // } else if(enemyHealth <= 0) {
+      //   [MODES.MODE]: MODES.EXPLORING
+      //   alert('You have won! ')//xp
+      // } else if (health <= 0) {
+      //   print('You died. \n\n--------- Game Over ---------');
+      //   alive = false; // End Game
+      // }
   }
 
   // Update character's data and return
