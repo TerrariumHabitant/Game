@@ -1,5 +1,5 @@
-import { getAllEnemies } from './definitions/enemies'; // getAllEnemies has no parameters
-import { prompt } from './tools';
+import { DESCRIPTION, getAllEnemies } from './definitions/enemies';
+import { prompt, randomSelection } from './tools';
 import * as MODES from './definitions/modes';
 import { LOCATION, LOCATIONS } from './definitions/locations';
 import { MIN_LEVEL, LEVEL } from './definitions/enemies';
@@ -10,18 +10,25 @@ export function print(string) {
 // pick when, where and which enemy appears - WEAPONS AND XP
 export async function fight(character) {
   const enemies = getAllEnemies();
-  const pertinentEnemies = Object.keys(enemies).reduce((enemiesReduction, enemyKey) => {
+  const pertinentEnemyKeys = Object.keys(enemies).filter((enemyKey) => {
     if (
       enemies[enemyKey][LOCATIONS].includes(character[LOCATION]) &&
       enemies[enemyKey][MIN_LEVEL] <= character[LEVEL]
     ) {
-      enemiesReduction[enemyKey] = enemies[enemyKey];
+      return true;
     }
-    return enemiesReduction;
-  }, {});
+    return false;
+  });
 
-  // TODO: Temporary
-  pertinentEnemies;
+  // Specific enemy
+  const currentEnemyKey = randomSelection(pertinentEnemyKeys);
+
+  const currentEnemy = {
+    ...enemies[currentEnemyKey],
+  };
+
+  print('THIS IS THE DESCRIPTION OF MY CURRENT ENEMEY');
+  print(currentEnemy[DESCRIPTION]);
 
   let alive = true;
   let running = false;
@@ -29,9 +36,8 @@ export async function fight(character) {
   // battle code
   while (alive && !running) {
     let choiceOFight = await prompt(
-      'You are in fighting mode. What would you like to do?\n You may run, or attack. ',
+      'You are in fighting mode. What would you like to do?\n You may run, or attack.',
     );
-
     // TODO: Temporary
     choiceOFight;
 
@@ -39,8 +45,8 @@ export async function fight(character) {
 
     // Amount of damaged taken should depend on weapon, weapons gained depend on level. Amount of damage taken to character depends on level -True?
     if (chanceOfSuccess === 1) {
-      // enemyHealth = enemyHealth - HITPOINTS;
-      // print(`You hit. Their health is now at ${enemyHealth}. They'll will fight back. `);
+      // currentEnemy.health = currentEnemy.health - HITPOINTS;
+      // print(`You hit. Their health is now at ${currentEnemy}. They'll will fight back.`);
     } else if (chanceOfSuccess === 0) {
       prompt('You missed. They will attack you. ');
     }
@@ -48,22 +54,22 @@ export async function fight(character) {
     let secondChanceOfSuccess = Math.floor(Math.random() * 2);
 
     if (secondChanceOfSuccess === 1) {
-      // health = health - LOSEPOINTS;
+      // character.health = character.health - LOSEPOINTS;
       // print(`You have been hit, your health is now ${health}`);
     } else if (secondChanceOfSuccess === 0) {
       print('They missed. Lucky you.');
     }
 
-      // if (choiceOfFight === 'run') {
-      //   running = true;
-      //   [MODES.MODE]: MODES.EXPLORING                      //EMENY HEALTH, IF BATTLE IS WON
-      // } else if(enemyHealth <= 0) {
-      //   [MODES.MODE]: MODES.EXPLORING
-      //   alert('You have won! ')//xp
-      // } else if (health <= 0) {
-      //   print('You died. \n\n--------- Game Over ---------');
-      //   alive = false; // End Game
-      // }
+    // if (choiceOfFight === 'run') {
+    //   running = true;
+    //   [MODES.MODE]: MODES.EXPLORING
+    // } else if(enemyHealth <= 0) {
+    //   [MODES.MODE]: MODES.EXPLORING,
+    //   alert('You have won!')
+    // } else if (health <= 0) {
+    //   print('You died. \n\n--------- Game Over ---------');
+    //   alive = false; // End Game
+    // }
   }
 
   // Update character's data and return
