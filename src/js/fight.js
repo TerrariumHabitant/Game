@@ -3,7 +3,7 @@ import { prompt, randomSelection, print, wait } from './tools';
 import * as MODES from './definitions/modes';
 import { LOCATION, LOCATIONS } from './definitions/locations';
 import { getUserLevel } from './definitions/character';
-import { MIN_LEVEL, LOSEPOINTS, HITPOINTS, ENEMYHEALTH } from './definitions/enemies';
+import { MIN_LEVEL, LOSEPOINTS, HITPOINTS, ENEMYHEALTH, XPPOINTS } from './definitions/enemies';
 
 // pick when, where and which enemy appears
 export async function fight(character) {
@@ -25,15 +25,16 @@ export async function fight(character) {
     ...enemies[currentEnemyKey],
   };
 
-  let running = false;
-  let enemyDefeated = false;
-
   print(currentEnemy[DESCRIPTION]);
   print('You are now in fighting mode. Don your armour, and tremble!.');
 
   // battle code
-  while (!running && !enemyDefeated) {
-    let choiceOfFight = await prompt('What would you like to do?\n You may run, or attack.');
+  let keepFighting = true;
+  while (keepFighting) {
+    let choiceOfFight = await prompt('What would you like to do?\n You may run, or attack.', [
+      'run',
+      'attack',
+    ]);
 
     if (choiceOfFight === 'attack') {
       let chanceOfSuccess = Math.floor(Math.random() * 2);
@@ -41,11 +42,14 @@ export async function fight(character) {
       // Amount of damaged taken should depend on weapon, weapons gained depend on level. Amount of damage taken to character depends on level -True?
       if (chanceOfSuccess === 1) {
         currentEnemy[ENEMYHEALTH] = currentEnemy[ENEMYHEALTH] - currentEnemy[HITPOINTS];
-        print(
-          `You hit. Their health is now at ` +
-            currentEnemy[ENEMYHEALTH] +
-            ` They'll will fight back.`,
-        );
+        if (currentEnemy[ENEMYHEALTH] <= 0) {
+          print(currentEnemy[WIN_TEXT]);
+          character.points = character.points + currentEnemy[XPPOINTS];
+          print('Your experience is now at ' + character.points);
+          break;
+        } else if (currentEnemy[ENEMYHEALTH] > 0) {
+          print(` They'll will fight back.`);
+        }
       } else if (chanceOfSuccess === 0) {
         print('You missed. They will attack you. ');
       }
@@ -55,19 +59,17 @@ export async function fight(character) {
       if (secondChanceOfSuccess === 1) {
         character.health = character.health - currentEnemy[LOSEPOINTS];
         print(`You have been hit, your health is now ` + character.health);
+        if (character.health <= 0) {
+          print(currentEnemy[LOSE_TEXT]);
+          print('--------- Game Over ---------');
+          process.exit();
+        }
       } else if (secondChanceOfSuccess === 0) {
         print('They missed. Lucky you.');
       }
     } else if (choiceOfFight === 'run') {
-      running = true;
       print(currentEnemy[RUN_TEXT]);
-    } else if (currentEnemy.enemyhealth <= 0) {
-      enemyDefeated = true;
-      print(currentEnemy[WIN_TEXT]);
-    } else if (character.health <= 0) {
-      print(currentEnemy[LOSE_TEXT]);
-      print('--------- Game Over ---------');
-      process.exit();
+      break;
     }
   }
 
@@ -76,6 +78,7 @@ export async function fight(character) {
   // Update character's data and return
   return {
     ...character,
+    justHadAFight: true,
     [MODES.MODE]: MODES.EXPLORING,
   };
 }

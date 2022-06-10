@@ -39,12 +39,14 @@ export async function explore(character) {
   const thisIsMyFirstTimeInTheCave =
     character[LOCATION] === CAVE && getNumTimesInCurrentLocation(character) === 0;
   const enemyExistsHere = randomInt(1, 3);
-  if (!thisIsMyFirstTimeInTheCave && enemyExistsHere === 2) {
+  if (!thisIsMyFirstTimeInTheCave && enemyExistsHere === 2 && !character.justHadAFight) {
     return {
       ...character,
       [MODES.MODE]: MODES.FIGHTING,
     };
   }
+
+  character.justHadAFight = false;
 
   // This code is not working
   // const availableDisplayActions = availableActions.map((displayAction) => {

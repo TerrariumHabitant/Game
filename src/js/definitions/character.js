@@ -55,6 +55,7 @@ export function createCharacter(name, location, character) {
     equipped: [],
     stashed: [],
     [LOCATION + HISTORY]: [],
+    justHadAFight: false,
   };
 }
 
