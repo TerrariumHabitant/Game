@@ -22,11 +22,6 @@ const commonPlaceDescriptions = {
     'There is a railroad here - obviously long since abandoned. There is a cart, and the sun can be seen in the roof in some places, but they are much too far to reach.', // This is as far as you can go.
 };
 
-// const commonActionDescriptions = {
-//   run: 'you began to run ',
-//   'look for key': 'You began to search. ',
-// };
-
 // Global varibles used throughout program
 export const DESCRIPTION = 'description';
 export const LOCATION = 'location';
@@ -43,12 +38,15 @@ export const SHAFT = 'shaft';
 
 export const NON_ACTION_KEYS = [DESCRIPTION];
 
-export function getAllLocations(character) {
-  // Count the number of times we've been here before (excluding this time)
-  const numTimesInThisLocation = character[LOCATION + HISTORY].reduce(
+// Count the number of times we've been here before (excluding this time)
+export function getNumTimesInCurrentLocation(character) {
+  return character[LOCATION + HISTORY].reduce(
     (reduced, current) => reduced + (current === character[LOCATION] ? 1 : 0),
     -1,
   );
+}
+export function getAllLocations(character) {
+  const numTimesInThisLocation = getNumTimesInCurrentLocation(character);
 
   // game play
   return {

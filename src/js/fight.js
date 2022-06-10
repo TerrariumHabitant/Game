@@ -5,17 +5,10 @@ import { LOCATION, LOCATIONS } from './definitions/locations';
 import { getUserLevel } from './definitions/character';
 import { MIN_LEVEL } from './definitions/enemies';
 
-// pick when, where and which enemy appears - WEAPONS AND XP
+// pick when, where and which enemy appears
 export async function fight(character) {
   const enemies = getAllEnemies();
   const pertinentEnemyKeys = Object.keys(enemies).filter((enemyKey) => {
-    print('LOOP');
-    print(JSON.stringify(enemies[enemyKey][LOCATIONS]));
-    print(JSON.stringify(character[LOCATION]));
-    print(JSON.stringify(enemies[enemyKey][MIN_LEVEL]));
-    print(JSON.stringify(character.points));
-    print(JSON.stringify(getUserLevel(character.points)));
-
     if (
       enemies[enemyKey][LOCATIONS].includes(character[LOCATION]) &&
       enemies[enemyKey][MIN_LEVEL] <= getUserLevel(character.points)
@@ -25,9 +18,6 @@ export async function fight(character) {
     return false;
   });
 
-  print('THIS IS THE LIST OF PERTINENT ENEMIES BASED ON MY LEVEL AND LOCATION');
-  print(JSON.stringify(pertinentEnemyKeys));
-
   // Specific enemy
   const currentEnemyKey = randomSelection(pertinentEnemyKeys);
 
@@ -35,16 +25,15 @@ export async function fight(character) {
     ...enemies[currentEnemyKey],
   };
 
-  print('THIS IS THE DESCRIPTION OF MY CURRENT ENEMEY');
-  print(currentEnemy[DESCRIPTION]);
-
   let alive = true;
   let running = false;
+
+  print(currentEnemy[DESCRIPTION]);
 
   // battle code
   while (alive && !running) {
     let choiceOFight = await prompt(
-      'You are in fighting mode. What would you like to do?\n You may run, or attack.',
+      'You are now in fighting mode. Don your armour, and tremble!. What would you like to do?\n You may run, or attack.',
     );
     // TODO: Temporary
     choiceOFight;

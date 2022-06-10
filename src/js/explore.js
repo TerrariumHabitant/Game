@@ -1,10 +1,12 @@
 // Imports from other files used in explore code
 import {
+  CAVE,
   DESCRIPTION,
   LOCATION,
   getAllLocations,
   NON_ACTION_KEYS,
   RESULT_TEXT,
+  getNumTimesInCurrentLocation,
 } from './definitions/locations';
 import { HISTORY } from './definitions/character';
 import { prompt, print, clear, wait, saveCharacter, randomInt } from './tools';
@@ -33,10 +35,11 @@ export async function explore(character) {
   print(currentLocation[DESCRIPTION]);
   print('');
 
-  // Test location for emeny
+  // Test location for enemy
+  const thisIsMyFirstTimeInTheCave =
+    character[LOCATION] === CAVE && getNumTimesInCurrentLocation(character) === 0;
   const enemyExistsHere = randomInt(1, 3);
-  print('two = enemy:  ' + enemyExistsHere);
-  if (enemyExistsHere === 2) {
+  if (!thisIsMyFirstTimeInTheCave && enemyExistsHere === 2) {
     return {
       ...character,
       [MODES.MODE]: MODES.FIGHTING,
