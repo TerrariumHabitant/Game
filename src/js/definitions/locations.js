@@ -66,10 +66,10 @@ export function getAllLocations(character) {
         [LOCATION]: CAVE,
         [MODES.MODE]: MODES.EXPLORING,
       },
-      'sniff the door (Type <a>) ': {
+      'sniff the door': {
         [RESULT_TEXT]: 'It smells like a big, old oak door.',
       },
-      'search around room for key (Type <b>)': {
+      'search around room for key': {
         // 1/100 chance finding it on first time, you SHOULD look more than once
         [RESULT_TEXT]: (() => {
           if (character.foundTheOakDoorKey) {
@@ -98,10 +98,10 @@ export function getAllLocations(character) {
       //       },
       //     }
       // : {}),
-      'find a way out (Type <c>)': {
+      'find a way out': {
         [RESULT_TEXT]: 'You should probaly start by finding the key to the door. ',
       },
-      'go to door (Type <d>)': {
+      'go to door': {
         [RESULT_TEXT]:
           'You notice the door has a keyhole, it is probably VERY good that you noticed this.',
       },

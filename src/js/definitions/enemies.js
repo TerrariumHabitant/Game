@@ -25,6 +25,7 @@ export const HITPOINTS = 'hitpoints';
 export const LOSEPOINTS = 'losepoints';
 export const WIN_TEXT = 'win_text';
 export const LOSE_TEXT = 'lose_text';
+export const RUN_TEXT = 'run_text';
 export const XPPOINTS_TEXT = 'xppoints_text';
 export const XPPOINTS = 'xppoints';
 export const ENEMYHEALTH = 'enemyhealth';
@@ -49,6 +50,8 @@ export function getAllEnemies() {
       [LOCATIONS]: [CAVE, NORTHTUNNEL, MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(5, 15),
       [HITPOINTS]: randomInt(5, 10), // weapons
+      [RUN_TEXT]:
+        'You are running from a bat. As you go, now may be a very appropriate time to consider the life choices that brought you to this particular juncture.',
       [WIN_TEXT]: `You beat that ${BAT}. Yay?\n\n ... but you gained some experience. So there's that, I guess.`,
       [LOSE_TEXT]: `You were defeated by a ${BAT}. You should probably dwell on that for a while.`,
       [XPPOINTS_TEXT]: `You have won 10 points. Cool. `,

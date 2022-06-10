@@ -78,7 +78,6 @@ async function play(character) {
         character = await explore(character);
         break;
       case MODES.FIGHTING:
-        print('You are now in fighting mode. Don your armour, and tremble!');
         character = await fight(character);
         break;
     }
