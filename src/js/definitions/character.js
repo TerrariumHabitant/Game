@@ -51,7 +51,7 @@ export function createCharacter(name, location, character) {
     [CHARACTER]: character,
     health: 90,
     maxHealth: 100,
-    points: 0,
+    points: 500,
     equipped: [],
     stashed: [],
     [LOCATION + HISTORY]: [],

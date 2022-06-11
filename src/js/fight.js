@@ -73,7 +73,7 @@ export async function fight(character) {
     }
   }
 
-  await wait(10000);
+  await wait(5000);
 
   // Update character's data and return
   return {

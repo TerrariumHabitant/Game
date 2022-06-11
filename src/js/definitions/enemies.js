@@ -40,7 +40,7 @@ export const OGRE = 'Ogre'.green;
 export const CYCLOPS = 'Cyclops'.white;
 export const DRAGON = 'Dragon'.yellow;
 
-// Enemy maps
+// Enemy maps ADD RUN_TEXT!!!!!
 export function getAllEnemies() {
   return {
     [BAT]: {
@@ -67,6 +67,7 @@ export function getAllEnemies() {
       [LOCATIONS]: [NORTHTUNNEL, MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(10, 15),
       [HITPOINTS]: randomInt(10, 15), // weapons
+      [RUN_TEXT]: 'You are running from a snake, which I guess is sort of scary',
       [WIN_TEXT]: 'You won. That makes sense, it was only a snake. ',
       [LOSE_TEXT]: "You lost; that's a bit dissappointing. ",
       [XPPOINTS_TEXT]: `You have won 20 points Cool. `,
@@ -79,6 +80,7 @@ export function getAllEnemies() {
       [LOCATIONS]: [MINE, SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(20, 30),
       [HITPOINTS]: randomInt(10, 20), // weapons
+      [RUN_TEXT]: 'You are now running from a troll, that makes sense',
       [WIN_TEXT]: 'You won, good job I guess. ',
       [LOSE_TEXT]: 'You lost. No big suprise there, huh?',
       [XPPOINTS_TEXT]: `You have won 30 points Cool. `,
@@ -93,6 +95,7 @@ export function getAllEnemies() {
       [LOCATIONS]: [SOUTHTUNNEL, CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(30, 40),
       [HITPOINTS]: randomInt(20, 30), // weapons
+      [RUN_TEXT]: 'You are running from an elf',
       [WIN_TEXT]: 'Actually, that was very well done. ',
       [LOSE_TEXT]: 'You lost. ',
       [XPPOINTS_TEXT]: `You have won 40 points Cool. `,
@@ -105,6 +108,7 @@ export function getAllEnemies() {
       [LOCATIONS]: [CAVERN, EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(40, 50),
       [HITPOINTS]: randomInt(30, 40), // weapons
+      [RUN_TEXT]: 'You are now running from an ogre',
       [WIN_TEXT]: 'You win! ',
       [LOSE_TEXT]: "You've lost. ",
       [XPPOINTS_TEXT]: `You have won 50 points, good job. `,
@@ -117,6 +121,7 @@ export function getAllEnemies() {
       [LOCATIONS]: [EASTTUNNEL, SHAFT],
       [LOSEPOINTS]: randomInt(50, 60),
       [HITPOINTS]: randomInt(40, 50), // weapons
+      [RUN_TEXT]: 'You are running from a cyclops',
       [WIN_TEXT]: 'Wow, yeah...I did not see that coming. ',
       [LOSE_TEXT]: "You've lost. I can't say that that does't make sense. ",
       [XPPOINTS_TEXT]: `You have won 60 points Cool. `,
@@ -131,6 +136,8 @@ export function getAllEnemies() {
       [LOCATIONS]: [SHAFT],
       [LOSEPOINTS]: randomInt(60, 75),
       [HITPOINTS]: randomInt(50, 60), // weapons - certain weapon to win?
+      [RUN_TEXT]:
+        'You are running from a dragon, even though he proably has the key around his shaft',
       [WIN_TEXT]: 'Okay, you got me. I was NOT expecting that. ',
       [LOSE_TEXT]: 'Hehehe...You lost!',
       [XPPOINTS_TEXT]: `You have won 100 points. Good job. `,
