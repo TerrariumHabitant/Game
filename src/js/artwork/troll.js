@@ -15,5 +15,5 @@ export const artwork = [
  --'                  \\  \\ |   /    |  |              '-
                        \\ \\UU/     |  /   ::
 
-`.rainbow,
+`.green,
 ];
