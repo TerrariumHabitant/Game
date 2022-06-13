@@ -1,4 +1,5 @@
 // functions, global varibles, and artwork imported for this game mode
+import chalk from 'chalk';
 import { randomInt, randomSelection } from '../tools';
 import {
   LOCATIONS,
@@ -19,7 +20,6 @@ import * as cyclops from '../artwork/cyclops';
 import * as dragon from '../artwork/dragon';
 
 // Interact between character and enemies
-export const COLOR = 'color';
 export const DESCRIPTION = 'description';
 export const HITPOINTS = 'hitpoints';
 export const LOSEPOINTS = 'losepoints';
@@ -32,13 +32,13 @@ export const ENEMYHEALTH = 'enemyhealth';
 export const MIN_LEVEL = 'min_level';
 
 // Types of Enemies
-export const BAT = 'Bat'.grey;
-export const RATHERLARGESNAKE = 'Rather large snake'.red;
-export const TROLL = 'Troll'.bgGreen;
-export const ELF = 'Elf'.cyan;
-export const OGRE = 'Ogre'.green;
-export const CYCLOPS = 'Cyclops'.white;
-export const DRAGON = 'Dragon'.yellow;
+export const BAT = chalk.grey('Bat');
+export const RATHERLARGESNAKE = chalk.red('Rather large snake');
+export const TROLL = chalk.bgGreen('Troll');
+export const ELF = chalk.cyan('Elf');
+export const OGRE = chalk.green('Ogre');
+export const CYCLOPS = chalk.white('Cyclops');
+export const DRAGON = chalk.yellow('Dragon');
 
 // Enemy maps ADD RUN_TEXT!!!!!
 export function getAllEnemies() {

@@ -1,5 +1,7 @@
+import chalk from 'chalk';
+
 export const artwork = [
-  `
+  chalk.green(`
             _.------.                        .----.__
            /         \\_.       ._           /---.__  \\
           |  O    O   |\\\\___  //|          /       '\\ |
@@ -15,5 +17,5 @@ export const artwork = [
  --'                  \\  \\ |   /    |  |              '-
                        \\ \\UU/     |  /   ::
 
-`.green,
+`),
 ];

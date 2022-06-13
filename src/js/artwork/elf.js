@@ -1,5 +1,7 @@
+import chalk from 'chalk';
+
 export const artwork = [
-  `
+  chalk.cyan(`
            .-----.
  \\ ' /   _/    )/
 - ( ) -('---''--)
@@ -18,8 +20,8 @@ export const artwork = [
          | (   \\ |     
       .-'__,)  (  \\
                    '\\_-,
-`.cyan,
-  `
+`),
+  chalk.cyan(`
               v
         (__)v | v
         /\\/\\\\_|_/
@@ -31,5 +33,5 @@ export const artwork = [
     /  )^/\\^( |
     )_//'__>> |
       #   #'  |
-`,
+`),
 ];

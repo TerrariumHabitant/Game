@@ -1,5 +1,7 @@
+import chalk from 'chalk';
+
 export const artwork = [
-  `
+  chalk.red(`
     Y
   .-^-.
  /     \\      .- ~ ~ -.
@@ -17,8 +19,8 @@ export const artwork = [
                     '.   ~ - - - - ~   .'
                        ~ . _ _ _ _ . ~                                                                                      
                                                                                         
-`.red,
-  `
+`),
+  chalk.red(`
            /^\\/^\\
          _|__|  O|
 \\/     /~     \\_/ \\
@@ -37,5 +39,5 @@ export const artwork = [
             ~-_           _-~          ~-_       _-~
                ~--______-~                ~-___-~
 
-`.red,
+`),
 ];

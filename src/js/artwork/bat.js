@@ -1,5 +1,7 @@
+import chalk from 'chalk';
+
 export const artwork = [
-  `
+  chalk.gray(`
                                                                                         
                                                                                         
                                                                                         
@@ -29,8 +31,8 @@ export const artwork = [
                                                                                         
                                                                                         
                                                                                         
-`.gray,
-  `
+`),
+  chalk.gray(`
                                                                                   
   ▓▓▓▓▓▓                                                            ▓▓▓▓▓▓▓▓▓▓▓▓▓▓
     ▒▒▓▓██▓▓                                                    ▓▓▓▓████▓▓▓▓▒▒    
@@ -57,5 +59,5 @@ export const artwork = [
                           ▓▓▓▓▓▓▓▓████▓▓████████████                              
                             ██▓▓████▓▓████████                                    
 
-`.gray,
+`),
 ];

@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "colors": "1.4.0",
+    "chalk": "4.1.2",
+    "gradient-string": "2.0.1",
+    "figlet": "1.5.2",
     "fs": "0.0.1-security",
     "fuzzy-matching": "0.4.3",
     "prompt": "1.2.0"

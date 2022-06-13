@@ -1,9 +1,19 @@
-import { DESCRIPTION, getAllEnemies, RUN_TEXT, WIN_TEXT, LOSE_TEXT } from './definitions/enemies';
-import { prompt, randomSelection, print, wait } from './tools';
+import {
+  DESCRIPTION,
+  getAllEnemies,
+  RUN_TEXT,
+  WIN_TEXT,
+  LOSE_TEXT,
+  MIN_LEVEL,
+  LOSEPOINTS,
+  HITPOINTS,
+  ENEMYHEALTH,
+  XPPOINTS
+} from './definitions/enemies';
+import {prompt, randomSelection, print, wait} from './tools';
 import * as MODES from './definitions/modes';
-import { LOCATION, LOCATIONS } from './definitions/locations';
-import { getUserLevel } from './definitions/character';
-import { MIN_LEVEL, LOSEPOINTS, HITPOINTS, ENEMYHEALTH, XPPOINTS } from './definitions/enemies';
+import {LOCATION, LOCATIONS} from './definitions/locations';
+import {getUserLevel} from './definitions/character';
 
 // pick when, where and which enemy appears
 export async function fight(character) {

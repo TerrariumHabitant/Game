@@ -1,17 +1,17 @@
 // Global varibles and imports from other files of the code
 import * as MODES from './modes';
 import { LOCATION } from './locations';
-import colors from 'colors';
+import chalk from 'chalk';
 
 export const NAME = 'name';
 export const COLOR = 'color';
 export const CHARACTER = 'character';
 
 // Add colour to text
-export const BLUE = { [NAME]: 'BlueGuy', [COLOR]: colors.brightBlue };
-export const RED = { [NAME]: 'RedGuy', [COLOR]: colors.brightRed };
-export const GREEN = { [NAME]: 'GreenGuy', [COLOR]: colors.brightGreen };
-export const PURPLE = { [NAME]: 'PurpleGuy', [COLOR]: colors.magenta };
+export const BLUE = { [NAME]: 'BlueGuy', [COLOR]: chalk.blueBright };
+export const RED = { [NAME]: 'RedGuy', [COLOR]: chalk.redBright };
+export const GREEN = { [NAME]: 'GreenGuy', [COLOR]: chalk.greenBright };
+export const PURPLE = { [NAME]: 'PurpleGuy', [COLOR]: chalk.magenta };
 
 export const HISTORY = 'history';
 
